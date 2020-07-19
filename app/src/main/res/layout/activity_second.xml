@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FFFFFF"
-    android:weightSum="5"
+
     android:layout_margin="2dp"
     tools:context=".SecondActivity">
 
@@ -20,6 +20,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/NOTE"
+                android:layout_width="wrap_content"
+                android:layout_height="170dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:drawableTop="@drawable/ic_baseline_create_24"
+                android:stateListAnimator="@null"
+                android:text="NOTE" />
 
             <Button
                 android:id="@+id/createnewfile"
@@ -42,7 +54,7 @@
                 android:layout_weight="1"
                 android:background="#FFFFFF"
                 android:drawableTop="@drawable/ic_baseline_folder_open_24"
-                android:text="Open a new file"
+                android:text="Open an Existed file"
                 android:stateListAnimator="@null"/>
 
             <Button
