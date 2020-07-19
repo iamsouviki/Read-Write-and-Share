@@ -21,5 +21,5 @@
     <item android:title="Find in file"
         android:id="@+id/find"
         android:icon="@drawable/find"/>
-    <item android:title="Text Size" />
+     />
 </menu>
