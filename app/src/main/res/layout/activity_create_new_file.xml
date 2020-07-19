@@ -19,6 +19,7 @@
             android:layout_height="match_parent"
             android:ems="15"
             android:background="@drawable/backgroundedittext"
-            android:textAlignment="center"/>
+            
+            android:gravity="top"/>
     </LinearLayout>
 </LinearLayout>
