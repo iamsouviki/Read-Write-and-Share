@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="5"
-    android:layout_margin="10dp"
+    android:background="#FFFFFF"
+    android:layout_margin="2dp"
     tools:context=".SecondActivity">
 
 
@@ -28,6 +29,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
+
                 android:drawableTop="@drawable/ic_baseline_note_24"
                 android:text="Create a new file" />
 
