@@ -29,7 +29,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
-
+                android:stateListAnimator="@null"
                 android:drawableTop="@drawable/ic_baseline_note_24"
                 android:text="Create a new file" />
 
@@ -42,7 +42,8 @@
                 android:layout_weight="1"
                 android:background="#FFFFFF"
                 android:drawableTop="@drawable/ic_baseline_folder_open_24"
-                android:text="Open a new file" />
+                android:text="Open a new file"
+                android:stateListAnimator="@null"/>
 
             <Button
                 android:id="@+id/sharefile"
@@ -51,6 +52,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
+                android:stateListAnimator="@null"
                 android:background="#FFFFFF"
                 android:drawableTop="@drawable/ic_baseline_share_24"
                 android:text="Share File" />
@@ -62,6 +64,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
+                android:stateListAnimator="@null"
                 android:background="#FFFFFF"
                 android:drawableTop="@drawable/ic_baseline_info_24"
                 android:text="About" />
