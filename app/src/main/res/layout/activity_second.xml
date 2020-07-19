@@ -42,7 +42,7 @@
                 android:layout_weight="1"
                 android:background="#FFFFFF"
                 android:drawableTop="@drawable/ic_baseline_folder_open_24"
-                android:text="Open a new file"
+                android:text="Open an Existed file"
                 android:stateListAnimator="@null"/>
 
             <Button
