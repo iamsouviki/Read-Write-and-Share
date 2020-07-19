@@ -22,18 +22,6 @@
             android:orientation="vertical" >
 
             <Button
-                android:id="@+id/NOTE"
-                android:layout_width="wrap_content"
-                android:layout_height="170dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:drawableTop="@drawable/ic_baseline_create_24"
-                android:stateListAnimator="@null"
-                android:text="NOTE" />
-
-            <Button
                 android:id="@+id/createnewfile"
                 android:layout_width="wrap_content"
                 android:layout_height="170dp"
@@ -68,6 +56,18 @@
                 android:background="#FFFFFF"
                 android:drawableTop="@drawable/ic_baseline_share_24"
                 android:text="Share File" />
+
+            <Button
+                android:id="@+id/NOTE"
+                android:layout_width="wrap_content"
+                android:layout_height="170dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:drawableTop="@drawable/ic_baseline_create_24"
+                android:stateListAnimator="@null"
+                android:text="NOTE" />
 
             <Button
                 android:id="@+id/About"
