@@ -13,7 +13,7 @@ public class note extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
-        getSupportActionBar().setTitle("Untitle");
+        getSupportActionBar().setTitle("Untitled");
 
     }
 

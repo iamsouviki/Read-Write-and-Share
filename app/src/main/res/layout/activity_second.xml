@@ -22,18 +22,6 @@
             android:orientation="vertical" >
 
             <Button
-                android:id="@+id/note"
-                android:layout_width="wrap_content"
-                android:layout_height="170dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:drawableTop="@drawable/ic_baseline_create_24"
-                android:stateListAnimator="@null"
-                android:text="NOTE" />
-
-            <Button
                 android:id="@+id/createnewfile"
                 android:layout_width="wrap_content"
                 android:layout_height="170dp"
@@ -56,6 +44,18 @@
                 android:drawableTop="@drawable/ic_baseline_folder_open_24"
                 android:text="Open an Existed file"
                 android:stateListAnimator="@null"/>
+
+            <Button
+                android:id="@+id/note"
+                android:layout_width="wrap_content"
+                android:layout_height="170dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:drawableTop="@drawable/ic_baseline_create_24"
+                android:stateListAnimator="@null"
+                android:text="NOTE" />
 
             <Button
                 android:id="@+id/sharefile"
