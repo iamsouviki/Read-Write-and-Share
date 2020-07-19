@@ -12,7 +12,7 @@ import android.widget.Button;
 
 public class SecondActivity extends AppCompatActivity {
 
-    Button create;
+    Button create,note;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +20,20 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
 
         create = findViewById(R.id.createnewfile);
+        note = findViewById(R.id.note);
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SecondActivity.this,CreateNewFile.class));
-                finish();
+
+            }
+        });
+        note.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SecondActivity.this,note.class));
+
             }
         });
 
