@@ -28,8 +28,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
-                android:drawableTop="@drawable/ic_baseline_create_new_folder_24"
-                android:text="Create a new file"/>
+                android:drawableTop="@drawable/ic_baseline_note_24"
+                android:text="Create a new file" />
 
             <Button
                 android:id="@+id/opennewfile"
