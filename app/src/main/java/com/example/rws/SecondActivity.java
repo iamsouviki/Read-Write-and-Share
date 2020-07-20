@@ -12,7 +12,7 @@ import android.widget.Button;
 
 public class SecondActivity extends AppCompatActivity {
 
-    Button create,note;
+    Button create,note,share;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,21 +23,34 @@ public class SecondActivity extends AppCompatActivity {
 
         create = findViewById(R.id.createnewfile);
         note = findViewById(R.id.note);
+        share = findViewById(R.id.sharefile);
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SecondActivity.this,CreateNewFile.class));
+                finish();
 
             }
         });
+
         note.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SecondActivity.this,note.class));
+                finish();
 
             }
         });
+
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SecondActivity.this,ShareActivity.class));
+                finish();
+            }
+        });
+
 
     }
 
