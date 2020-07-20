@@ -33,7 +33,7 @@
             android:layout_marginTop="40dp"
             android:textSize="36dp"
             android:textAlignment="center"
-            android:text="Read Write & Share"
+            android:text="READ WRITE SHARE"
 
             />
     </LinearLayout>
