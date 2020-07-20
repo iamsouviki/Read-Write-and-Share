@@ -55,7 +55,7 @@
                 android:background="#FFFFFF"
                 android:drawableTop="@drawable/ic_baseline_create_24"
                 android:stateListAnimator="@null"
-                android:text="NOTE" />
+                android:text="NOTES" />
 
             <Button
                 android:id="@+id/sharefile"
@@ -67,7 +67,7 @@
                 android:stateListAnimator="@null"
                 android:background="#FFFFFF"
                 android:drawableTop="@drawable/ic_baseline_share_24"
-                android:text="Share File" />
+                android:text="Share A File" />
 
             <Button
                 android:id="@+id/About"

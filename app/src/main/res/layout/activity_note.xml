@@ -71,6 +71,7 @@
             android:background="#FFF"
             android:stateListAnimator="@null"
             app:srcCompat="@drawable/ic_baseline_photo_camera_24" />
+
     </LinearLayout>
 
 </LinearLayout>
