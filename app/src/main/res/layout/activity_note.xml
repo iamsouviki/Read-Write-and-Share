@@ -14,6 +14,7 @@
         android:layout_height="match_parent"
         android:layout_weight="0.8"
         android:background="@drawable/backgroundedittext"
+
         android:orientation="vertical">
 
         <EditText
@@ -21,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="5dp"
+            android:background="@null"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:gravity="top"/>
