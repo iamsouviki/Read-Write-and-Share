@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class SecondActivity extends AppCompatActivity {
 
-    Button create,note,share;
+    Button create,note,share,about;
     int count;
 
     @Override
@@ -27,6 +27,7 @@ public class SecondActivity extends AppCompatActivity {
         create = findViewById(R.id.createnewfile);
         note = findViewById(R.id.note);
         share = findViewById(R.id.sharefile);
+        about=findViewById(R.id.About);
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +52,14 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View view) {
                 startActivity(new Intent(SecondActivity.this,ShareActivity.class));
                 finish();
+            }
+        });
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SecondActivity.this,AboutActivity.class));
+                finish();
+
             }
         });
 
