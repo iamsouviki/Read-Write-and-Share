@@ -79,7 +79,7 @@
                 android:stateListAnimator="@null"
                 android:background="#FFFFFF"
                 android:drawableTop="@drawable/clock"
-                android:text="About" />
+                android:text="SERVICE" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
