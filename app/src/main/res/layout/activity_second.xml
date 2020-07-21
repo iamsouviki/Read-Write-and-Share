@@ -78,7 +78,7 @@
                 android:layout_weight="1"
                 android:stateListAnimator="@null"
                 android:background="#FFFFFF"
-                android:drawableTop="@drawable/ic_baseline_info_24"
+                android:drawableTop="@drawable/clock"
                 android:text="About" />
         </LinearLayout>
     </ScrollView>

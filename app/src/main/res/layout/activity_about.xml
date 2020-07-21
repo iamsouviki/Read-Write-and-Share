@@ -43,6 +43,7 @@
         android:stateListAnimator="@null"
         android:textAllCaps="false"
         android:background="#FFF"
+        android:text="App info"
         android:drawableLeft="@drawable/ic_baseline_info_24"
-        android:text="App info"/>
+        />
 </LinearLayout>
