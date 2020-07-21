@@ -71,7 +71,7 @@
 
             <Button
                 android:id="@+id/About"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="170dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
