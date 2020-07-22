@@ -19,7 +19,7 @@ public class AboutActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(AboutActivity.this,appInfo.class));
-                finish();
+
             }
         });
     }
