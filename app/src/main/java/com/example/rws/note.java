@@ -22,7 +22,7 @@ public class note extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Save Note").setMessage("Do You Want to Save this Note (Y/N)").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setTitle("Save Note").setMessage("Do you really want to Exit without Saving ?(Y/N)").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 startActivity(new Intent(note.this,SecondActivity.class));

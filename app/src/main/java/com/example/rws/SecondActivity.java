@@ -93,7 +93,7 @@ public class SecondActivity extends AppCompatActivity {
             finish();
             return;
         }
-        Toast.makeText(getApplicationContext(), "Back  Press Again to Exit", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Back Press Again to Exit", Toast.LENGTH_SHORT).show();
     }
 
 }
