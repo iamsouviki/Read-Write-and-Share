@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="#FFB530"
+        android:textSize="25sp"
+        android:text="RWS allows you to Read a file of any kind of format of text.
+You can create a text file in any format. You also can share a file from your file manager."/>
+
+
+
+</RelativeLayout>

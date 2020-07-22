@@ -37,7 +37,7 @@
         android:drawableLeft="@drawable/ic_baseline_assignment_24"
         android:text="Terms and Privacy policy" />
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btAppInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stateListAnimator="@null"
