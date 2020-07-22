@@ -8,17 +8,9 @@
     android:layout_margin="10dp"
     tools:context=".AboutActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:stateListAnimator="@null"
-        android:background="#FFF"
-        android:drawableLeft="@drawable/ic_baseline_help_outline_24"
-        android:text="faq" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btcontact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stateListAnimator="@null"
@@ -28,7 +20,7 @@
         android:text="Contact us" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btTerm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stateListAnimator="@null"
@@ -37,7 +29,7 @@
         android:drawableLeft="@drawable/ic_baseline_assignment_24"
         android:text="Terms and Privacy policy" />
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btAppInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stateListAnimator="@null"
