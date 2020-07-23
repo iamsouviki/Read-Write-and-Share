@@ -6,10 +6,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class contact extends AppCompatActivity {
     Button iti,souvik,sankar,moti,man;
+    EditText ig;
 
 
     @Override
@@ -21,6 +25,14 @@ public class contact extends AppCompatActivity {
         souvik=findViewById(R.id.souvik);
         moti=findViewById(R.id.moti);
         man=findViewById(R.id.man);
+        ig=findViewById(R.id.editTextTextPersonName2);
+
+        ig.setFocusable(false);
+        Animation anim = new AlphaAnimation(1.0f,0.5f);
+        anim.setDuration(1000);
+        anim.setRepeatCount(Animation.INFINITE);
+        anim.setRepeatMode(Animation.REVERSE);
+        ig.startAnimation(anim);
 
         iti.setOnClickListener(new View.OnClickListener() {
             @Override
