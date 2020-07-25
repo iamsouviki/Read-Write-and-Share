@@ -18,9 +18,23 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical" >
-
+            <com.synnapps.carouselview.CarouselView
+                android:id="@+id/carouselView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:fillColor="#FFFFFFFF"
+                app:pageColor="#00000000"
+                app:radius="6dp"
+                app:slideInterval="3000"
+                app:strokeColor="#FF777777"
+                app:strokeWidth="1dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_margin="15dp"
+        android:orientation="horizontal">
             <Button
                 android:id="@+id/createnewfile"
                 android:layout_width="wrap_content"
@@ -44,6 +58,12 @@
                 android:drawableTop="@drawable/ic_baseline_folder_open_24"
                 android:text="Open an Existed file"
                 android:stateListAnimator="@null"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_margin="15dp"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/note"
@@ -68,7 +88,13 @@
                 android:background="#FFFFFF"
                 android:drawableTop="@drawable/ic_baseline_share_24"
                 android:text="Share A File" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_margin="15dp"
+            android:orientation="horizontal">
             <Button
                 android:id="@+id/About"
                 android:layout_width="150dp"
@@ -80,6 +106,8 @@
                 android:background="#FFFFFF"
                 android:drawableTop="@drawable/clock"
                 android:text="SERVICE" />
+        </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -10,13 +10,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 public class SecondActivity extends AppCompatActivity {
 
     Button create,note,share,about;
     int count;
+    CarouselView carouselView;
 
+    int[] sampleImages = {R.drawable.enjoy};
+    ImageListener imageListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +35,15 @@ public class SecondActivity extends AppCompatActivity {
         note = findViewById(R.id.note);
         share = findViewById(R.id.sharefile);
         about=findViewById(R.id.About);
+        carouselView = (CarouselView) findViewById(R.id.carouselView);
+        carouselView.setPageCount(sampleImages.length);
+        imageListener = new ImageListener() {
+            @Override
+            public void setImageForPosition(int position, ImageView imageView) {
+                imageView.setImageResource(sampleImages[position]);
+            }
+        };
+        carouselView.setImageListener(imageListener);
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
