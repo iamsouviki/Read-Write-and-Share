@@ -22,7 +22,7 @@ public class SecondActivity extends AppCompatActivity {
     int count;
     CarouselView carouselView;
 
-    int[] sampleImages = {R.drawable.enjoy};
+    int[] sampleImages = {R.drawable.enjoy,R.drawable.enjoy1};
     ImageListener imageListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
