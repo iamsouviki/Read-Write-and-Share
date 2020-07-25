@@ -5,16 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="1"
-    android:layout_margin="15dp"
+    android:weightSum="2"
     tools:context=".CreateNewFile">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.8"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.9"
         android:background="@drawable/backgroundedittext"
-
+        android:layout_margin="10dp"
         android:orientation="vertical">
 
         <EditText
@@ -29,49 +28,48 @@
 
     </LinearLayout>
 <!-- Change to bottom navigation menu -->
-    <LinearLayout
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.15"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
+        android:layout_height="30dp"
+        android:layout_weight="0.1"
+        android:layout_marginBottom="7dp"
+        android:background="@color/Transparent">
 
-        <ImageButton
-            android:id="@+id/imageButtonAddImage"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:stateListAnimator="@null"
-            android:background="#FFF"
-            app:srcCompat="@drawable/ic_baseline_image_24" />
+            android:weightSum="3"
+            android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/imageButtonAddVoice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:stateListAnimator="@null"
-            android:background="#FFF"
-            app:srcCompat="@drawable/ic_baseline_record_voice_over_24" />
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_baseline_image_24"
+                android:text="Image"
+                android:layout_weight="1"
+                android:layout_gravity="center"/>
 
-        <ImageButton
-            android:id="@+id/imageButtonAddText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:stateListAnimator="@null"
-            android:background="#FFF"
-            app:srcCompat="@drawable/ic_baseline_text_fields_24" />
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_baseline_record_voice_over_24"
+                android:text="Voice"
+                android:layout_weight="1"
+                android:layout_gravity="center"/>
 
-        <ImageButton
-            android:id="@+id/imageButtonScanByImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#FFF"
-            android:stateListAnimator="@null"
-            app:srcCompat="@drawable/ic_baseline_photo_camera_24" />
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Camera"
+                android:drawableTop="@drawable/ic_baseline_photo_camera_24"
+                android:layout_gravity="center"/>
 
-    </LinearLayout>
+        </LinearLayout>
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </LinearLayout>
