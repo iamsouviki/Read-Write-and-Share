@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context=".contact">
+    tools:context=".Contact">
 
     <Button
         android:id="@+id/iti"

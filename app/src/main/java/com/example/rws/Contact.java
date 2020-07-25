@@ -11,7 +11,7 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class contact extends AppCompatActivity {
+public class Contact extends AppCompatActivity {
     Button iti,souvik,sankar,moti,man;
     EditText ig;
 

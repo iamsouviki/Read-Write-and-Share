@@ -20,21 +20,21 @@ public class AboutActivity extends AppCompatActivity {
         apinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AboutActivity.this,appInfo.class));
+                startActivity(new Intent(AboutActivity.this, AappInfo.class));
 
             }
         });
         term.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AboutActivity.this,termsAndPolicy.class));
+                startActivity(new Intent(AboutActivity.this, TermsAndPolicy.class));
 
             }
         });
         cont.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AboutActivity.this,contact.class));
+                startActivity(new Intent(AboutActivity.this, Contact.class));
             }
         });
     }
