@@ -29,47 +29,13 @@
     </LinearLayout>
 <!-- Change to bottom navigation menu -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_weight="0.1"
-        android:layout_marginBottom="7dp"
-        android:background="@color/Transparent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="3"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableTop="@drawable/ic_baseline_image_24"
-                android:text="Image"
-                android:layout_weight="1"
-                android:layout_gravity="center"/>
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableTop="@drawable/ic_baseline_record_voice_over_24"
-                android:text="Voice"
-                android:layout_weight="1"
-                android:layout_gravity="center"/>
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Camera"
-                android:drawableTop="@drawable/ic_baseline_photo_camera_24"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/notebottomnavigation"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"/>
 
 </LinearLayout>
