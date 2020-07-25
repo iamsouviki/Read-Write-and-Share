@@ -8,21 +8,25 @@
     tools:context=".ShareActivity">
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@drawable/sendrecievebackground"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:src="@drawable/send"
+        android:drawableTop="@drawable/send"
+        android:text="Send"
         android:layout_margin="20dp"
         android:clickable="true" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/recieve"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/recieve"
+        android:background="@drawable/sendrecievebackground"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:drawableTop="@drawable/recieve"
+        android:text="Recieve"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
