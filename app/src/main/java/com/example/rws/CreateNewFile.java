@@ -23,7 +23,7 @@ public class CreateNewFile extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Save File").setMessage("Do You Want to Save (Y/N)").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setTitle("Save File").setMessage("Do you really want to Exit without Saving ?(Y/N)").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 startActivity(new Intent(CreateNewFile.this,SecondActivity.class));

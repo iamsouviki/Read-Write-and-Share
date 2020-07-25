@@ -9,8 +9,8 @@
         android:gravity="center"
         android:textColor="#FFB530"
         android:textSize="25sp"
-        android:text="1.We want access of files, internet, wifi and hotspot to function our appliction properly.\n
-2.We working on end to end encryption."/>
+        android:text="1.We want access of files, internet, wifi and hotspot to function our application properly.\n
+2.We are working on end to end encryption."/>
 
 
 
