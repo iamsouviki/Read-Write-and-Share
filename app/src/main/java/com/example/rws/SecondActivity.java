@@ -57,7 +57,7 @@ public class SecondActivity extends AppCompatActivity {
         note.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SecondActivity.this,note.class));
+                startActivity(new Intent(SecondActivity.this, Note.class));
                 finish();
 
             }

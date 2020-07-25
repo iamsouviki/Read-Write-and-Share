@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class note extends AppCompatActivity {
+public class Note extends AppCompatActivity {
 
     AlertDialog alertDialog;
 
@@ -25,7 +25,7 @@ public class note extends AppCompatActivity {
         builder.setTitle("Save Note").setMessage("Do you really want to Exit without Saving ?(Y/N)").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                startActivity(new Intent(note.this,SecondActivity.class));
+                startActivity(new Intent(Note.this,SecondActivity.class));
                 finish();
             }
         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
