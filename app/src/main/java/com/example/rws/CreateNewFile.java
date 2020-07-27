@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,9 +16,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 import static com.example.rws.R.layout.savefiledialogue;
 
@@ -72,10 +77,33 @@ public class CreateNewFile extends AppCompatActivity {
             public void onClick(View view) {
                 data = body.getText().toString();
                 FILE_NAME = filename.getText().toString();
-                Toast.makeText(getApplicationContext(), data +" "+FILE_NAME, Toast.LENGTH_SHORT).show();
+                write();
             }
         });
 
+    }
+
+    private void write() {
+        try
+        {
+            File path = getFilesDir() ;
+            File file = new File(path, FILE_NAME+".txt");
+            if (!file.exists()) {
+                file.mkdirs();
+            }
+            File gpxfile = new File(file, FILE_NAME);
+            FileWriter writer = new FileWriter(gpxfile);
+            writer.append(data);
+            writer.flush();
+            writer.close();
+            Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(CreateNewFile.this,SecondActivity.class));
+            finish();
+        }
+        catch(IOException e)
+        {
+            Toast.makeText(getApplicationContext(), "file error"+e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -100,4 +128,7 @@ public class CreateNewFile extends AppCompatActivity {
     public void onBackPressed() {
         alertDialog.show();
     }
+
+
+
 }
