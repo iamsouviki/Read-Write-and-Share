@@ -6,20 +6,20 @@
         android:id="@+id/noteimage"
         android:title="Image"
         android:icon="@drawable/ic_baseline_image_24"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         android:enabled="true"/>
 
     <item
         android:id="@+id/notecamera"
         android:title="Camera"
         android:icon="@drawable/ic_baseline_photo_camera_24"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         android:enabled="true"/>
 
     <item
         android:id="@+id/voice"
         android:title="Voice"
         android:icon="@drawable/ic_baseline_record_voice_over_24"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         android:enabled="true"/>
 </menu>

@@ -72,7 +72,8 @@ public class CreateNewFile extends AppCompatActivity {
 
         alertDialog = builder.create();
 
-        dialogView.findViewById(R.id.savefile).setOnClickListener(new View.OnClickListener() {
+        dialogView.findViewById(R.id.savefile).setOnClickListener(
+                new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 data = body.getText().toString();
