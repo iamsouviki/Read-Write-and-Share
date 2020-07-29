@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -28,11 +31,14 @@ import static com.example.rws.R.layout.savefiledialogue;
 public class CreateNewFile extends AppCompatActivity {
 
     EditText body,filename;
-    String data,FILE_NAME;
+    String content,FILE_NAME;
+    File file,textFile;
 
 
+    AlertDialog alertDialog,alertDialog1,alert;
+    boolean ch;
 
-    AlertDialog alertDialog,alertDialog1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,7 @@ public class CreateNewFile extends AppCompatActivity {
         setContentView(R.layout.activity_create_new_file);
 
         getSupportActionBar().setTitle("Untitled");
+
 
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
         LayoutInflater inf = this.getLayoutInflater();
@@ -76,35 +83,37 @@ public class CreateNewFile extends AppCompatActivity {
                 new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                data = body.getText().toString();
+                content = body.getText().toString();
                 FILE_NAME = filename.getText().toString();
                 write();
+                startActivity(new Intent(CreateNewFile.this,SecondActivity.class));
+                finish();
             }
         });
 
     }
 
     private void write() {
-        try
-        {
-            File path = getFilesDir() ;
-            File file = new File(path, FILE_NAME+".txt");
-            if (!file.exists()) {
-                file.mkdirs();
+        try {
+            textFile = new File(file,FILE_NAME);
+            if(textFile.exists()) {
+                if(prepAlert()){
+                    FileWriter writer = new FileWriter(textFile,true);
+                    writer.append(content+"\n\n");
+                    writer.flush();
+                    writer.close();
+                }
+            }else{
+                textFile.createNewFile();
+                FileWriter writer = new FileWriter(textFile,true);
+                writer.append(content+"\n\n");
+                writer.flush();
+                writer.close();
             }
-            File gpxfile = new File(file, FILE_NAME);
-            FileWriter writer = new FileWriter(gpxfile);
-            writer.append(data);
-            writer.flush();
-            writer.close();
-            Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(CreateNewFile.this,SecondActivity.class));
-            finish();
+        } catch (IOException e) {
+            Toast.makeText(getApplicationContext(), "Hi", Toast.LENGTH_SHORT).show();
         }
-        catch(IOException e)
-        {
-            Toast.makeText(getApplicationContext(), "file error"+e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(getApplicationContext(), "Nicely Done ", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -128,6 +137,31 @@ public class CreateNewFile extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         alertDialog.show();
+    }
+
+    public boolean prepAlert(){
+        AlertDialog.Builder build = new AlertDialog.Builder(this);
+        build.setTitle("Duplicate File Name");
+        build.setMessage("Do you want to delete the previous file ");
+        build.setCancelable(false);
+        build.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                textFile.delete();
+                ch = true;
+            }
+        });
+        build.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+                ch = false;
+            }
+        });
+
+        alert = build.create();
+        alert.show();
+        return ch;
     }
 
 
