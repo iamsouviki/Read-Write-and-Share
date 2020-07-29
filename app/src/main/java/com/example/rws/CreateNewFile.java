@@ -38,7 +38,7 @@ public class CreateNewFile extends AppCompatActivity {
     AlertDialog alertDialog,alertDialog1,alert;
     boolean ch;
 
-
+    String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class CreateNewFile extends AppCompatActivity {
         setContentView(R.layout.activity_create_new_file);
 
         getSupportActionBar().setTitle("Untitled");
-
+        requestPermissions(permissions,3);
 
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
         LayoutInflater inf = this.getLayoutInflater();
@@ -113,7 +113,7 @@ public class CreateNewFile extends AppCompatActivity {
         } catch (IOException e) {
             Toast.makeText(getApplicationContext(), "Hi", Toast.LENGTH_SHORT).show();
         }
-        Toast.makeText(getApplicationContext(), "Nicely Done ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), FILE_NAME+"  Saved Successfully", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -164,6 +164,21 @@ public class CreateNewFile extends AppCompatActivity {
         return ch;
     }
 
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 3:
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    file = new File(Environment.getExternalStorageDirectory(), "RWS");
+                    if(file.mkdirs()){
+                        Toast.makeText(this, "Setup Done", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    Toast.makeText(this, "denied", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+    }
 
 }

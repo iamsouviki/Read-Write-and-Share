@@ -3,11 +3,8 @@ package com.example.rws;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,15 +16,11 @@ import android.widget.Toast;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
-import java.io.File;
-
 public class SecondActivity extends AppCompatActivity {
 
     Button create,note,share,about;
     int count;
     CarouselView carouselView;
-    String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    File file;
 
     int[] sampleImages = {R.drawable.enjoy,R.drawable.viewimage1,R.drawable.viewimage2,R.drawable.viewimage3};
     ImageListener imageListener;
@@ -37,7 +30,6 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
 
         getSupportActionBar().setTitle("Read   Write  &  Share");
-        requestPermissions(permissions,3);
 
         create = findViewById(R.id.createnewfile);
         note = findViewById(R.id.note);
@@ -120,24 +112,6 @@ public class SecondActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Back Press Again to Exit", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case 3:
-                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    //Granted.
-                    //Toast.makeText(this, "granted", Toast.LENGTH_SHORT).show();
-                    file = new File(Environment.getExternalStorageDirectory(), "RWS");
-                    if(file.mkdirs()){
-                        Toast.makeText(this, "Setup Done", Toast.LENGTH_SHORT).show();
-                    }
-                }
-                else{
-                    //Denied.
-                    Toast.makeText(this, "denied", Toast.LENGTH_SHORT).show();
-                }
-                break;
-        }
-    }
+
 
 }
