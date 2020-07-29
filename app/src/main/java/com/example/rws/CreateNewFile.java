@@ -86,8 +86,6 @@ public class CreateNewFile extends AppCompatActivity {
                 content = body.getText().toString();
                 FILE_NAME = filename.getText().toString();
                 write();
-                startActivity(new Intent(CreateNewFile.this,SecondActivity.class));
-                finish();
             }
         });
 
@@ -102,6 +100,9 @@ public class CreateNewFile extends AppCompatActivity {
                     writer.append(content+"\n\n");
                     writer.flush();
                     writer.close();
+                    Toast.makeText(getApplicationContext(), FILE_NAME+"  Saved Successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(CreateNewFile.this,SecondActivity.class));
+                    finish();
                 }
             }else{
                 textFile.createNewFile();
@@ -109,11 +110,14 @@ public class CreateNewFile extends AppCompatActivity {
                 writer.append(content+"\n\n");
                 writer.flush();
                 writer.close();
+                Toast.makeText(getApplicationContext(), FILE_NAME+"  Saved Successfully", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(CreateNewFile.this,SecondActivity.class));
+                finish();
             }
         } catch (IOException e) {
             Toast.makeText(getApplicationContext(), "Hi", Toast.LENGTH_SHORT).show();
         }
-        Toast.makeText(getApplicationContext(), FILE_NAME+"  Saved Successfully", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
