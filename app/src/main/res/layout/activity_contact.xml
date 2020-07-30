@@ -19,6 +19,15 @@
         android:text="Souvik Ghosh" />
 
     <Button
+        android:id="@+id/man"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:stateListAnimator="@null"
+        android:text="Soumen Pal"
+        android:textAllCaps="false" />
+
+    <Button
         android:id="@+id/sankar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,15 +53,6 @@
         android:background="?android:attr/selectableItemBackground"
         android:textAllCaps="false"
         android:text="Subhadip Nandi" />
-
-    <Button
-        android:id="@+id/man"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:stateListAnimator="@null"
-        android:background="?android:attr/selectableItemBackground"
-        android:textAllCaps="false"
-        android:text="Soumen Pal" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
