@@ -16,7 +16,7 @@
         app:showAsAction="always"/>
 
     <item android:title="Rename"
-        android:id="@+id/rename"
+        android:id="@+id/saveas"
         android:icon="@drawable/rename"/>
     <item android:title="Find in file"
         android:id="@+id/find"

@@ -15,11 +15,51 @@
         android:id="@+id/save"
         app:showAsAction="always"/>
 
-    <item android:title="Rename"
-        android:id="@+id/rename"
-        android:icon="@drawable/rename"/>
-    <item android:title="Find in file"
-        android:id="@+id/find"
-        android:icon="@drawable/find"/>
-     />
+    <item android:icon="@drawable/ic_baseline_more_vert_24"
+        app:showAsAction="always"
+        android:title="more">
+
+        <menu>
+
+            <item
+                android:id="@+id/saveas"
+                android:icon="@drawable/save"
+                android:title="Save as" />
+            <item
+                android:id="@+id/front"
+                android:icon="@drawable/ic_baseline_text_fields_24"
+                android:title="front" />
+            <item
+                android:id="@+id/search"
+                android:icon="@drawable/search"
+                android:title="Search"
+                app:actionViewClass="android.widget.SearchView"></item>
+            <item
+                android:id="@+id/replace"
+                android:icon="@drawable/ffind"
+                android:title="Replace"
+                app:actionViewClass="android.widget.SearchView"></item>
+            <item
+                android:id="@+id/zoom"
+                android:title="Zoom"
+                android:icon="@drawable/zoom"/>
+            <item
+                android:id="@+id/share"
+                android:icon="@drawable/share"
+                android:title="Share" />
+            <item
+                android:id="@+id/print"
+                android:icon="@drawable/print"
+                android:title="Print" />
+            <item
+                android:id="@+id/info"
+                android:icon="@drawable/info"
+                android:title="Info" />
+            <item
+                android:id="@+id/close"
+                android:icon="@drawable/close"
+                android:title="Close" />
+        </menu>
+    </item>
+
 </menu>
