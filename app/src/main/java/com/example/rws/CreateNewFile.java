@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -100,7 +101,15 @@ public class CreateNewFile extends AppCompatActivity {
                     writer.append(content+"\n\n");
                     writer.flush();
                     writer.close();
-                    Toast.makeText(getApplicationContext(), FILE_NAME+"  Saved Successfully", Toast.LENGTH_SHORT).show();
+                    final Toast toast=Toast.makeText(getApplicationContext(), FILE_NAME+"  Saved Successfully", Toast.LENGTH_SHORT);
+                    toast.show();
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            toast.cancel();
+                        }
+                    }, 500);
                     startActivity(new Intent(CreateNewFile.this,SecondActivity.class));
                     finish();
                 }
@@ -110,7 +119,15 @@ public class CreateNewFile extends AppCompatActivity {
                 writer.append(content+"\n\n");
                 writer.flush();
                 writer.close();
-                Toast.makeText(getApplicationContext(), FILE_NAME+"  Saved Successfully", Toast.LENGTH_SHORT).show();
+                final Toast toast=Toast.makeText(getApplicationContext(), FILE_NAME+"  Saved Successfully", Toast.LENGTH_SHORT);
+                toast.show();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        toast.cancel();
+                    }
+                }, 500);
                 startActivity(new Intent(CreateNewFile.this,SecondActivity.class));
                 finish();
             }
