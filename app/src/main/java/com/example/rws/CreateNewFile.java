@@ -89,10 +89,11 @@ public class CreateNewFile extends AppCompatActivity {
                 write();
             }
         });
-        dialogView.findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+
+        dialogView.findViewById(R.id.backindialogue).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialogInterface.dismiss();
+                alertDialog1.dismiss();
             }
         });
 
