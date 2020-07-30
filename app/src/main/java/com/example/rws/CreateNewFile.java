@@ -89,7 +89,6 @@ public class CreateNewFile extends AppCompatActivity {
                 write();
             }
         });
-
         dialogView.findViewById(R.id.backindialogue).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
