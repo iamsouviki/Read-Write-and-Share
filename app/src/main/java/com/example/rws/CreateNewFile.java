@@ -58,7 +58,7 @@ public class CreateNewFile extends AppCompatActivity {
         builder1.setCancelable(true);
         alertDialog1 = builder1.create();
 
-        body = findViewById(R.id.filebody);
+        body = findViewById(R.id.filecontent);
         filename = dialogView.findViewById(R.id.filename);
 
 

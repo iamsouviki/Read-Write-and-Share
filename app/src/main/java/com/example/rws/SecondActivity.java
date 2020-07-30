@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
-import static com.example.rws.R.layout.openpagedialogue;
 import static com.example.rws.R.layout.savefiledialogue;
 
 public class SecondActivity extends AppCompatActivity {
@@ -37,14 +36,6 @@ public class SecondActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Read   Write  &  Share");
 
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        LayoutInflater inf = this.getLayoutInflater();
-
-        final View dialogView = inf.inflate(openpagedialogue,null);
-
-        builder1.setView(dialogView);
-        builder1.setCancelable(true);
-        openpaggedialogue = builder1.create();
 
         create = findViewById(R.id.createnewfile);
         note = findViewById(R.id.note);
@@ -75,10 +66,10 @@ public class SecondActivity extends AppCompatActivity {
         openfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openpaggedialogue.show();
-                openpaggedialogue.setCancelable(true);
+
             }
         });
+
 
 
         note.setOnClickListener(new View.OnClickListener() {
