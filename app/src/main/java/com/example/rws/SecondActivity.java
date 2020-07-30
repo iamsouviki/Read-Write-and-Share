@@ -1,11 +1,13 @@
 package com.example.rws;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,11 +18,15 @@ import android.widget.Toast;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
+import static com.example.rws.R.layout.openpagedialogue;
+import static com.example.rws.R.layout.savefiledialogue;
+
 public class SecondActivity extends AppCompatActivity {
 
-    Button create,note,share,about;
+    Button create,note,share,about,openfile;
     int count;
     CarouselView carouselView;
+    AlertDialog openpaggedialogue;
 
     int[] sampleImages = {R.drawable.enjoy,R.drawable.viewimage1,R.drawable.viewimage2,R.drawable.viewimage3};
     ImageListener imageListener;
@@ -31,11 +37,23 @@ public class SecondActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Read   Write  &  Share");
 
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        LayoutInflater inf = this.getLayoutInflater();
+
+        final View dialogView = inf.inflate(openpagedialogue,null);
+
+        builder1.setView(dialogView);
+        builder1.setCancelable(true);
+        openpaggedialogue = builder1.create();
+
         create = findViewById(R.id.createnewfile);
         note = findViewById(R.id.note);
         share = findViewById(R.id.sharefile);
         about=findViewById(R.id.About);
+        openfile=findViewById(R.id.opennewfile);
         carouselView = (CarouselView) findViewById(R.id.carouselView);
+
+
         carouselView.setPageCount(sampleImages.length);
         imageListener = new ImageListener() {
             @Override
@@ -53,6 +71,15 @@ public class SecondActivity extends AppCompatActivity {
 
             }
         });
+
+        openfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openpaggedialogue.show();
+                openpaggedialogue.setCancelable(true);
+            }
+        });
+
 
         note.setOnClickListener(new View.OnClickListener() {
             @Override
