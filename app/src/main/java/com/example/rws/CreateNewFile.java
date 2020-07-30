@@ -52,7 +52,7 @@ public class CreateNewFile extends AppCompatActivity {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
         LayoutInflater inf = this.getLayoutInflater();
 
-        View dialogView = inf.inflate(savefiledialogue,null);
+        final View dialogView = inf.inflate(savefiledialogue,null);
 
         builder1.setView(dialogView);
         builder1.setCancelable(true);
@@ -87,6 +87,12 @@ public class CreateNewFile extends AppCompatActivity {
                 content = body.getText().toString();
                 FILE_NAME = filename.getText().toString();
                 write();
+            }
+        });
+        dialogView.findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogInterface.dismiss();
             }
         });
 
@@ -158,6 +164,7 @@ public class CreateNewFile extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         alertDialog.show();
+
     }
 
     public boolean prepAlert(){
@@ -177,7 +184,9 @@ public class CreateNewFile extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
                 ch = false;
+
             }
+
         });
 
         alert = build.create();
