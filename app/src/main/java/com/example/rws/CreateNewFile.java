@@ -132,7 +132,7 @@ public class CreateNewFile extends AppCompatActivity {
                 finish();
             }
         } catch (IOException e) {
-            Toast.makeText(getApplicationContext(), "Hi", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Contacts us if you found problem", Toast.LENGTH_SHORT).show();
         }
 
     }
