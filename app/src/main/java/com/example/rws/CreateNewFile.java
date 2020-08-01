@@ -28,6 +28,7 @@ public class CreateNewFile extends AppCompatActivity {
 
     EditText body,filename;
     String content,FILE_NAME;
+    String filecontent;
     File file,textFile;
 
 
@@ -58,8 +59,8 @@ public class CreateNewFile extends AppCompatActivity {
 
         // For open file
         Intent intn = getIntent();
-        int check = intn.getIntExtra("check",0);
-        String filecontent = intn.getStringExtra("FlieContent");
+        final int check = intn.getIntExtra("check",0);
+        filecontent = intn.getStringExtra("FlieContent");
         String Filename = intn.getStringExtra("filename");
         if(check==50){
             getSupportActionBar().setTitle(Filename);
