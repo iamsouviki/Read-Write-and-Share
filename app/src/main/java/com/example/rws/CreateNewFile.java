@@ -5,7 +5,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -19,13 +18,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 
 import static com.example.rws.R.layout.savefiledialogue;
 
@@ -67,7 +62,7 @@ public class CreateNewFile extends AppCompatActivity {
         builder.setTitle("Save File").setMessage("Do you really want to Exit without Saving ?(Y/N)").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                startActivity(new Intent(CreateNewFile.this,SecondActivity.class));
+                startActivity(new Intent(CreateNewFile.this, MainActivity.class));
                 finish();
             }
         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -115,7 +110,7 @@ public class CreateNewFile extends AppCompatActivity {
                             toast.cancel();
                         }
                     }, 500);
-                    startActivity(new Intent(CreateNewFile.this,SecondActivity.class));
+                    startActivity(new Intent(CreateNewFile.this, MainActivity.class));
                     finish();
                 }
             }else{
@@ -133,7 +128,7 @@ public class CreateNewFile extends AppCompatActivity {
                         toast.cancel();
                     }
                 }, 500);
-                startActivity(new Intent(CreateNewFile.this,SecondActivity.class));
+                startActivity(new Intent(CreateNewFile.this, MainActivity.class));
                 finish();
             }
         } catch (IOException e) {

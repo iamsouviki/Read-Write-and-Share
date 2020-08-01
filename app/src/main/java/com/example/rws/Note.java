@@ -25,7 +25,7 @@ public class Note extends AppCompatActivity {
         builder.setTitle("Save Note").setMessage("Do you really want to Exit without Saving ?(Y/N)").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                startActivity(new Intent(Note.this,SecondActivity.class));
+                startActivity(new Intent(Note.this, MainActivity.class));
                 finish();
             }
         }).setNegativeButton("No", new DialogInterface.OnClickListener() {

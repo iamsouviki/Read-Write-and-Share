@@ -1,36 +1,215 @@
 package com.example.rws;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
+import android.provider.DocumentsContract;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
 
 public class MainActivity extends AppCompatActivity {
-    ImageView ig;
+
+    Button create,note,share,about,openfile;
+    int count;
+    CarouselView carouselView;
+    FileInputStream fileInputStream;
+    String fileContent,actualfilepath,filename;
+    File file;
+
+    int[] sampleImages = {R.drawable.enjoy,R.drawable.viewimage1,R.drawable.viewimage2,R.drawable.viewimage3};
+    ImageListener imageListener;
+    String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ig=findViewById(R.id.ig);
-        Animation anim = new AlphaAnimation(1.0f,0.5f);
-        anim.setDuration(700);
-        anim.setRepeatCount(Animation.INFINITE);
-        anim.setRepeatMode(Animation.REVERSE);
-        ig.startAnimation(anim);
-        getSupportActionBar().hide();
+        setContentView(R.layout.activity_second);
 
+        getSupportActionBar().setTitle("Read   Write  &  Share");
+        requestPermissions(permissions,3);
+
+
+        create = findViewById(R.id.createnewfile);
+        note = findViewById(R.id.note);
+        share = findViewById(R.id.sharefile);
+        about=findViewById(R.id.About);
+        openfile=findViewById(R.id.opennewfile);
+        carouselView = (CarouselView) findViewById(R.id.carouselView);
+
+
+        carouselView.setPageCount(sampleImages.length);
+        imageListener = new ImageListener() {
+            @Override
+            public void setImageForPosition(int position, ImageView imageView) {
+                imageView.setImageResource(sampleImages[position]);
+            }
+        };
+        carouselView.setImageListener(imageListener);
+
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,CreateNewFile.class));
+                finish();
+
+            }
+        });
+
+        openfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.setType("text/*");
+                startActivityForResult(Intent.createChooser(intent,"Select File"),3);
+            }
+        });
+
+
+
+        note.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Note.class));
+                finish();
+
+            }
+        });
+
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,ShareActivity.class));
+                finish();
+            }
+        });
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,AboutActivity.class));
+
+
+            }
+        });
+
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.firstmenu,menu);
+        return (true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(MainActivity.this,SecondActivity.class));
-                finish();
+                count = 0;
             }
         },1500);
 
+        count ++;
+
+        if(count > 1){
+            finish();
+            return;
+        }
+        Toast.makeText(getApplicationContext(), "Back Press Again to Exit", Toast.LENGTH_SHORT).show();
     }
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 3:
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    Toast.makeText(getApplicationContext(), "Storage Permission Given", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(this, "denied", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 3 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri filePath = data.getData();
+            if (filePath.getAuthority().equals("com.android.externalstorage.documents")){
+
+                String tempID = DocumentsContract.getDocumentId(filePath);
+                String[] split = tempID.split(":");
+                String type = split[0];
+                String id = split[1];
+                if (type.equals("primary")){
+                    actualfilepath=  Environment.getExternalStorageDirectory()+"/"+id;
+                    Toast.makeText(getApplicationContext(),actualfilepath, Toast.LENGTH_SHORT).show();
+                }
+                if(id.contains("/")){
+                    String[] st = id.split("/");
+                    filename = st[st.length-1].trim();
+                }else{
+                    filename = id.trim();
+                }
+
+                readfile();
+
+                }
+
+        }
+    }
+
+    public void readfile(){
+        File file = new File(actualfilepath, filename);
+        StringBuilder builder = new StringBuilder();
+        try {
+
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = br.readLine())!=null){
+                builder.append(line);
+                builder.append("\n");
+            }
+
+            br.close();
+
+        }catch (Exception e){
+            //Toast.makeText(getApplicationContext(), e+"", Toast.LENGTH_LONG).show();
+        }
+
+        //Toast.makeText(getApplicationContext(), builder.toString(), Toast.LENGTH_SHORT).show();
+
+    }
+
 }

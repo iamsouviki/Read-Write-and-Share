@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.widget.Toast;
 
 public class ShareActivity extends AppCompatActivity {
     AlertDialog alertDialog;
@@ -24,7 +22,7 @@ public class ShareActivity extends AppCompatActivity {
         builder.setTitle("Back to Main Menu").setMessage("Do You Want to Back (Y/N)").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                startActivity(new Intent(ShareActivity.this,SecondActivity.class));
+                startActivity(new Intent(ShareActivity.this, MainActivity.class));
                 finish();
             }
         }).setNegativeButton("No", new DialogInterface.OnClickListener() {

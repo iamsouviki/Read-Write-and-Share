@@ -8,7 +8,7 @@
     android:background="#FFFFFF"
 
     android:layout_margin="2dp"
-    tools:context=".SecondActivity">
+    tools:context=".MainActivity">
 
 
     <ScrollView
