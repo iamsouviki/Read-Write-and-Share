@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,7 +41,7 @@ public class SecondActivity extends AppCompatActivity {
     int count;
     CarouselView carouselView;
     FileInputStream fileInputStream;
-    String fileContent;
+    String fileContent,actualfilepath,filename;
     File file;
 
     int[] sampleImages = {R.drawable.enjoy,R.drawable.viewimage1,R.drawable.viewimage2,R.drawable.viewimage3};
@@ -152,31 +153,70 @@ public class SecondActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Back Press Again to Exit", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 3 && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            //Uri filePath = data.getData();
 
-
-        }
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case 3:
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    file = new File(Environment.getExternalStorageDirectory(), "RWS");
-                    if(file.mkdirs()){
-                        Toast.makeText(this, "Setup Done", Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(getApplicationContext(), "Storage Permission Given", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(this, "denied", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 3 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri filePath = data.getData();
+            if (filePath.getAuthority().equals("com.android.externalstorage.documents")){
+
+                String tempID = DocumentsContract.getDocumentId(filePath);
+                String[] split = tempID.split(":");
+                String type = split[0];
+                String id = split[1];
+                if (type.equals("primary")){
+                    actualfilepath=  Environment.getExternalStorageDirectory()+"/"+id;
+                }
+                if(id.contains("/")){
+                    String[] st = id.split("/");
+                    filename = st[st.length-1].trim();
+                }else{
+                    filename = id.trim();
+                }
+
+                readfile();
+
+                }
+
+        }
+    }
+
+    public void readfile(){
+        File file = new File(actualfilepath, filename);
+        StringBuilder builder = new StringBuilder();
+        try {
+
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = br.readLine())!=null){
+                builder.append(line);
+                builder.append("\n");
+            }
+
+            br.close();
+
+        }catch (Exception e){
+            Log.e("main", " error is "+e.toString());
+        }
+
+        Toast.makeText(getApplicationContext(), builder.toString(), Toast.LENGTH_SHORT).show();
+
     }
 
 }
