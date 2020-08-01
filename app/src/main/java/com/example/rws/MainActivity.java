@@ -169,8 +169,15 @@ public class MainActivity extends AppCompatActivity {
                 String[] split = tempID.split(":");
                 String type = split[0];
                 String id = split[1];
+                String[] lt = split[1].split("/");
+                String im = "";
+                for(int i=0;i<lt.length;i++){
+                    if(i != lt.length-1){
+                        im =im+ "/"+lt[i];
+                    }
+                }
                 if (type.equals("primary")){
-                    actualfilepath=  Environment.getExternalStorageDirectory()+"/"+id;
+                    actualfilepath=  Environment.getExternalStorageDirectory()+""+im;
                 }
                 if(id.contains("/")){
                     String[] st = id.split("/");
@@ -201,10 +208,13 @@ public class MainActivity extends AppCompatActivity {
             br.close();
 
         }catch (Exception e){
-            //Toast.makeText(getApplicationContext(), e+"", Toast.LENGTH_LONG).show();
+           Toast.makeText(getApplicationContext(), e+"", Toast.LENGTH_LONG).show();
         }
 
-        //Toast.makeText(getApplicationContext(), builder.toString(), Toast.LENGTH_SHORT).show();
+       Intent intn = new Intent(MainActivity.this,CreateNewFile.class);
+        intn.putExtra("FlieContent",builder.toString());
+        intn.putExtra("check",50);
+        startActivity(intn);
 
     }
 

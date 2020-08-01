@@ -56,6 +56,16 @@ public class CreateNewFile extends AppCompatActivity {
         filename = dialogView.findViewById(R.id.filename);
 
 
+        // For open file
+        Intent intn = getIntent();
+        int check = intn.getIntExtra("check",0);
+        String filecontent = intn.getStringExtra("FlieContent");
+        if(check==50){
+            body.setText(filecontent);
+        }
+
+
+
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -71,6 +81,8 @@ public class CreateNewFile extends AppCompatActivity {
                 dialogInterface.dismiss();
             }
         }).setCancelable(false);
+
+
 
         alertDialog = builder.create();
 
