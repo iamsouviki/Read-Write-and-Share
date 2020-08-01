@@ -214,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
        Intent intn = new Intent(MainActivity.this,CreateNewFile.class);
         intn.putExtra("FlieContent",builder.toString());
         intn.putExtra("check",50);
+        intn.putExtra("filename",filename);
         startActivity(intn);
 
     }

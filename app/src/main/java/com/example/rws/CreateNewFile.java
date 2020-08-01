@@ -60,8 +60,11 @@ public class CreateNewFile extends AppCompatActivity {
         Intent intn = getIntent();
         int check = intn.getIntExtra("check",0);
         String filecontent = intn.getStringExtra("FlieContent");
+        String Filename = intn.getStringExtra("filename");
         if(check==50){
+            getSupportActionBar().setTitle(Filename);
             body.setText(filecontent);
+            filename.setText(Filename);
         }
 
 
