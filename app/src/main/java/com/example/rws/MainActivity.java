@@ -151,11 +151,8 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case 3:
-                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    Toast.makeText(getApplicationContext(), "Storage Permission Given", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(this, "denied", Toast.LENGTH_SHORT).show();
+                if(grantResults[0] != PackageManager.PERMISSION_GRANTED){
+                    Toast.makeText(getApplicationContext(), "Please Give Storage Permission", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
@@ -174,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
                 String id = split[1];
                 if (type.equals("primary")){
                     actualfilepath=  Environment.getExternalStorageDirectory()+"/"+id;
-                    Toast.makeText(getApplicationContext(),actualfilepath, Toast.LENGTH_SHORT).show();
                 }
                 if(id.contains("/")){
                     String[] st = id.split("/");
