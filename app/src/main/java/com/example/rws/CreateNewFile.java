@@ -164,6 +164,7 @@ public class CreateNewFile extends AppCompatActivity {
             case R.id.save:
                 alertDialog1.show();
                 alertDialog1.setCancelable(false);
+
         }
 
 

@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
 
                 readfile();
 
-                }
+            }
 
         }
     }
@@ -208,10 +208,10 @@ public class MainActivity extends AppCompatActivity {
             br.close();
 
         }catch (Exception e){
-           Toast.makeText(getApplicationContext(), e+"", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), e+"", Toast.LENGTH_LONG).show();
         }
 
-       Intent intn = new Intent(MainActivity.this,CreateNewFile.class);
+        Intent intn = new Intent(MainActivity.this,CreateNewFile.class);
         intn.putExtra("FlieContent",builder.toString());
         intn.putExtra("check",50);
         intn.putExtra("filename",filename);
