@@ -1,12 +1,19 @@
 package com.example.rws;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +25,13 @@ import android.widget.Toast;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import static com.example.rws.R.layout.savefiledialogue;
 
 public class SecondActivity extends AppCompatActivity {
@@ -25,16 +39,21 @@ public class SecondActivity extends AppCompatActivity {
     Button create,note,share,about,openfile;
     int count;
     CarouselView carouselView;
-    AlertDialog openpaggedialogue;
+    FileInputStream fileInputStream;
+    String fileContent;
+    File file;
 
     int[] sampleImages = {R.drawable.enjoy,R.drawable.viewimage1,R.drawable.viewimage2,R.drawable.viewimage3};
     ImageListener imageListener;
+    String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
         getSupportActionBar().setTitle("Read   Write  &  Share");
+        requestPermissions(permissions,3);
 
 
         create = findViewById(R.id.createnewfile);
@@ -66,7 +85,10 @@ public class SecondActivity extends AppCompatActivity {
         openfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.setType("text/*");
+                startActivityForResult(Intent.createChooser(intent,"Select File"),3);
             }
         });
 
@@ -130,6 +152,31 @@ public class SecondActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Back Press Again to Exit", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 3 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            //Uri filePath = data.getData();
 
+
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 3:
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    file = new File(Environment.getExternalStorageDirectory(), "RWS");
+                    if(file.mkdirs()){
+                        Toast.makeText(this, "Setup Done", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    Toast.makeText(this, "denied", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+    }
 
 }
