@@ -182,7 +182,7 @@ public class CreateNewFile extends AppCompatActivity {
     public boolean prepAlert(){
         AlertDialog.Builder build = new AlertDialog.Builder(this);
         build.setTitle("Duplicate File Name");
-        build.setMessage("Do you want to delete the previous file ");
+        build.setMessage("Want to replace the previous file ");
         build.setCancelable(false);
         build.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
