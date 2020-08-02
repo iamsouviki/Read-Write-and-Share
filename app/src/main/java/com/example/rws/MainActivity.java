@@ -210,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e){
            Toast.makeText(getApplicationContext(), e+"", Toast.LENGTH_LONG).show();
         }
+        
 
        Intent intn = new Intent(MainActivity.this,CreateNewFile.class);
         intn.putExtra("FlieContent",builder.toString());

@@ -95,6 +95,7 @@ public class CreateNewFile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 content = body.getText().toString();
+
                 FILE_NAME = filename.getText().toString();
                 write();
             }
@@ -210,9 +211,6 @@ public class CreateNewFile extends AppCompatActivity {
             case 3:
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     file = new File(Environment.getExternalStorageDirectory(), "RWS");
-                    if(file.mkdirs()){
-                        Toast.makeText(this, "Setup Done", Toast.LENGTH_SHORT).show();
-                    }
                 }
                 else{
                     Toast.makeText(this, "denied", Toast.LENGTH_SHORT).show();
