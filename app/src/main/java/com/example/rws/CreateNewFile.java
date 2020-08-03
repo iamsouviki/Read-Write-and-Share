@@ -8,9 +8,13 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,7 +34,6 @@ public class CreateNewFile extends AppCompatActivity {
     String content,FILE_NAME;
     String filecontent;
     File file,textFile;
-
 
     AlertDialog alertDialog,alertDialog1,alert;
     boolean ch;
@@ -108,6 +111,7 @@ public class CreateNewFile extends AppCompatActivity {
         });
 
     }
+
 
     private void write() {
         try {
