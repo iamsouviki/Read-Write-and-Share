@@ -17,110 +17,82 @@
         android:orientation="horizontal"
         android:background="@null"
         android:shadowColor="#FFF"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_gravity="center">
 
-        <ImageButton
-            android:id="@+id/imageButton"
+        <Button
+            android:id="@+id/showfiles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/cllock"
+            android:drawableTop="@drawable/folder"
             android:background="@null"
             android:shadowColor="#FFF"
+            android:text="Files"
             android:layout_gravity="center"/>
-
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/folder"
-            android:background="@null"
-            android:shadowColor="#FFF"
-            android:layout_gravity="center"/>
-
-        <ImageButton
-            android:id="@+id/imageButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/multimedia"
-            android:background="@null"
-            android:shadowColor="#FFF"
-            android:layout_gravity="center"/>
-
-        <ImageButton
-            android:id="@+id/imageButton4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/picture"
-            android:background="@null"
-            android:shadowColor="#FFF"
-            android:layout_gravity="center"/>
-
-        <ImageButton
-            android:id="@+id/imageButton5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/ic_baseline_adb_24"
-            android:background="@null"
-            android:shadowColor="#FFF"
-            android:layout_gravity="center"/>
-
-        <ImageButton
-            android:id="@+id/imageButton6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/music"
-            android:background="@null"
-            android:shadowColor="#FFF"
-            android:layout_gravity="center"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.2"
-        android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/showvideos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableTop="@drawable/multimedia"
             android:background="@null"
             android:shadowColor="#FFF"
-            android:textStyle="italic"
-            android:text="Photos" />
+            android:text="Videos"
+            android:layout_gravity="center"/>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/showpics"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableTop="@drawable/picture"
+            android:text="Pictures"
             android:background="@null"
-            android:textStyle="italic"
             android:shadowColor="#FFF"
-            android:text="Albums" />
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/showapps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_baseline_adb_24"
+            android:text="Apps"
+            android:background="@null"
+            android:shadowColor="#FFF"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/showmusic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/music"
+            android:text="Music"
+            android:background="@null"
+            android:shadowColor="#FFF"
+            android:layout_gravity="center"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="99"
+        android:layout_margin="10dp"
+        android:background="@drawable/backgroundedittext"
         android:orientation="vertical">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/sharecontent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:layout_height="wrap_content" />
         </ScrollView>
     </LinearLayout>
 
