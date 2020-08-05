@@ -77,24 +77,14 @@
             android:layout_gravity="center"/>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="99"
+        android:id="@+id/sharecontent"
         android:layout_margin="10dp"
-        android:background="@drawable/backgroundedittext"
-        android:orientation="vertical">
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <RelativeLayout
-                android:id="@+id/sharecontent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </ScrollView>
-    </LinearLayout>
+        android:layout_weight="99"
+        android:background="@drawable/backgroundedittext">
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

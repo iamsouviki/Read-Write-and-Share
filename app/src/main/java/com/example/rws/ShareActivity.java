@@ -35,9 +35,9 @@ public class ShareActivity extends AppCompatActivity {
     AlertDialog alertDialog;
     Button sendfile,recievefile,showpic;
     WifiManager wifiManager;
-    private ArrayList<String> images;
     GridView gallery;
     ViewGroup root;
+    ImageAdaptar imageAdaptar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,7 @@ public class ShareActivity extends AppCompatActivity {
         setContentView(R.layout.activity_share);
 
         getSupportActionBar().setTitle("Share");
+        imageAdaptar = new ImageAdaptar(this);
 
 
         sendfile = findViewById(R.id.send);
@@ -75,9 +76,9 @@ public class ShareActivity extends AppCompatActivity {
             public void onClick(View view) {
                 View picview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallpictures, null);
                 gallery = picview.findViewById(R.id.galleryGridView);
-                gallery.setAdapter(new ImageAdapter(this));
+                gallery.setAdapter(imageAdaptar);
+                Toast.makeText(getApplicationContext(), imageAdaptar.ImageArray.size()+"", Toast.LENGTH_LONG).show();
                 root.addView(picview);
-                Toast.makeText(getApplicationContext(), images.toString(), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -106,71 +107,6 @@ public class ShareActivity extends AppCompatActivity {
 
 
 
-    private class ImageAdapter extends BaseAdapter {
-
-        private Activity context = ShareActivity.this;
-
-        public ImageAdapter(View.OnClickListener localContext) {
-            images = getAllShownImagesPath(context);
-        }
-
-        public int getCount() {
-            return images.size();
-        }
-
-        public Object getItem(int position) {
-            return position;
-        }
-
-        public long getItemId(int position) {
-            return position;
-        }
-
-        public View getView(final int position, View convertView,
-                            ViewGroup parent) {
-            ImageView picturesView;
-            if (convertView == null) {
-                picturesView = new ImageView(context);
-                picturesView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                picturesView
-                        .setLayoutParams(new GridView.LayoutParams(270, 270));
-
-            } else {
-                picturesView = (ImageView) convertView;
-            }
-
-            Glide.with(context).load(images.get(position))
-                    .placeholder(R.drawable.folder).centerCrop()
-                    .into(picturesView);
-
-            return picturesView;
-        }
-
-        private ArrayList<String> getAllShownImagesPath(Activity activity) {
-            Uri uri;
-            Cursor cursor;
-            int column_index_data, column_index_folder_name;
-            ArrayList<String> listOfAllImages = new ArrayList<String>();
-            String absolutePathOfImage = null;
-            uri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-
-            String[] projection = { MediaStore.MediaColumns.DATA,
-                    MediaStore.Images.Media.BUCKET_DISPLAY_NAME };
-
-            cursor = activity.getContentResolver().query(uri, projection, null,
-                    null, null);
-
-            column_index_data = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
-            column_index_folder_name = cursor
-                    .getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
-            while (cursor.moveToNext()) {
-                absolutePathOfImage = cursor.getString(column_index_data);
-
-                listOfAllImages.add(absolutePathOfImage);
-            }
-            return listOfAllImages;
-        }
-    }
 
 
 }

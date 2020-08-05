@@ -8,13 +8,14 @@
         android:id="@+id/galleryGridView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnWidth="280dp"
+        android:columnWidth="90dp"
         android:gravity="center"
-        android:horizontalSpacing="2dp"
-        android:numColumns="2"
+        android:horizontalSpacing="10dp"
+        android:numColumns="3"
         android:padding="2dp"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="2dp" >
+        android:foregroundGravity="center"
+        android:verticalSpacing="10dp" >
     </GridView>
 
 </RelativeLayout>
