@@ -33,7 +33,7 @@ import java.util.ArrayList;
 
 public class ShareActivity extends AppCompatActivity {
     AlertDialog alertDialog;
-    Button sendfile,recievefile,showpic;
+    Button sendfile,recievefile,showpic,showvideos;
     WifiManager wifiManager;
     GridView gallery;
     ViewGroup root;
@@ -45,12 +45,13 @@ public class ShareActivity extends AppCompatActivity {
         setContentView(R.layout.activity_share);
 
         getSupportActionBar().setTitle("Share");
-        imageAdaptar = new ImageAdaptar(this);
 
 
         sendfile = findViewById(R.id.send);
         recievefile = findViewById(R.id.recieve);
         showpic = findViewById(R.id.showpics);
+        showvideos = findViewById(R.id.showvideos);
+
         root = findViewById(R.id.sharecontent);
 
 
@@ -75,9 +76,9 @@ public class ShareActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 View picview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallpictures, null);
-                gallery = picview.findViewById(R.id.galleryGridView);
+                gallery = picview.findViewById(R.id.galleryGridViewimage);
+                imageAdaptar = new ImageAdaptar(ShareActivity.this);
                 gallery.setAdapter(imageAdaptar);
-                Toast.makeText(getApplicationContext(), imageAdaptar.ImageArray.size()+"", Toast.LENGTH_LONG).show();
                 root.addView(picview);
             }
         });

@@ -5,17 +5,16 @@
     android:layout_height="match_parent" >
 
     <GridView
-        android:id="@+id/galleryGridView"
+        android:id="@+id/galleryGridViewimage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnWidth="90dp"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:horizontalSpacing="10dp"
-        android:numColumns="3"
-        android:padding="2dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:numColumns="2"
         android:stretchMode="columnWidth"
-        android:foregroundGravity="center"
-        android:verticalSpacing="10dp" >
+        >
     </GridView>
 
 </RelativeLayout>

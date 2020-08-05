@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -45,9 +46,9 @@ public class ImageAdaptar extends BaseAdapter {
         ImageView picturesView;
         if (view == null) {
             picturesView = new ImageView(context);
-            picturesView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            picturesView.setScaleType(ImageView.ScaleType.FIT_XY);
             picturesView
-                    .setLayoutParams(new GridView.LayoutParams(300, 300));
+                    .setLayoutParams(new GridView.LayoutParams(800, 800));
 
         } else {
             picturesView = (ImageView) view;
