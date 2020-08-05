@@ -35,7 +35,7 @@ public class ShareActivity extends AppCompatActivity {
     AlertDialog alertDialog;
     Button sendfile,recievefile,showpic,showvideos;
     WifiManager wifiManager;
-    GridView gallery;
+    GridView pictures,videos;
     ViewGroup root;
     ImageAdaptar imageAdaptar;
 
@@ -75,11 +75,23 @@ public class ShareActivity extends AppCompatActivity {
         showpic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                root.removeAllViews();
                 View picview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallpictures, null);
-                gallery = picview.findViewById(R.id.galleryGridViewimage);
-                imageAdaptar = new ImageAdaptar(ShareActivity.this);
-                gallery.setAdapter(imageAdaptar);
+                pictures = picview.findViewById(R.id.galleryGridViewimage);
+                imageAdaptar = new ImageAdaptar(ShareActivity.this,"pic");
+                pictures.setAdapter(imageAdaptar);
                 root.addView(picview);
+            }
+        });
+        showvideos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                root.removeAllViews();
+                View videoview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallvideos, null);
+                videos = videoview.findViewById(R.id.galleryGridViewvideo);
+                imageAdaptar = new ImageAdaptar(ShareActivity.this,"video");
+                videos.setAdapter(imageAdaptar);
+                root.addView(videoview);
             }
         });
 

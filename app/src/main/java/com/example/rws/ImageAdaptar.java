@@ -21,8 +21,13 @@ import java.util.ArrayList;
 public class ImageAdaptar extends BaseAdapter {
     Context context;
     ArrayList<String> ImageArray;
-    ImageAdaptar(Context context){
+    String type ;
+    String[] projection;
+    Uri uri;
+
+    ImageAdaptar(Context context,String type){
         this.context=context;
+        this.type = type;
         ImageArray = getAllShownImagesPath(context);
 
     }
@@ -62,15 +67,21 @@ public class ImageAdaptar extends BaseAdapter {
 
     }
     private ArrayList<String> getAllShownImagesPath(Context activity) {
-        Uri uri;
         Cursor cursor;
         int column_index_data, column_index_folder_name;
         ArrayList<String> listOfAllImages = new ArrayList<String>();
         String absolutePathOfImage = null;
+        if(type == "pic"){
         uri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 
         String[] projection = { MediaStore.MediaColumns.DATA,
                 MediaStore.Images.Media.BUCKET_DISPLAY_NAME };
+        }else if(type == "video") {
+            uri = android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+            projection = new String[]{MediaStore.MediaColumns.DATA,
+                    MediaStore.Video.Media.BUCKET_DISPLAY_NAME};
+        }
+
 
         cursor = activity.getContentResolver().query(uri, projection, null,
                 null, null);
