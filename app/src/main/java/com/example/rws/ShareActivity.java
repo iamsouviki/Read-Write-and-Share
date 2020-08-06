@@ -33,7 +33,7 @@ import java.util.ArrayList;
 
 public class ShareActivity extends AppCompatActivity {
     AlertDialog alertDialog;
-    Button sendfile,recievefile,showpic,showvideos,showapps;
+    Button sendfile,recievefile,showpic,showvideos,showapps,showmusic;
     WifiManager wifiManager;
     GridView pictures,videos;
     ViewGroup root;
@@ -53,6 +53,7 @@ public class ShareActivity extends AppCompatActivity {
         showpic = findViewById(R.id.showpics);
         showvideos = findViewById(R.id.showvideos);
         showapps = findViewById(R.id.showapps);
+        showmusic = findViewById(R.id.showmusic);
 
         root = findViewById(R.id.sharecontent);
 
@@ -112,6 +113,16 @@ public class ShareActivity extends AppCompatActivity {
                 View videoview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallapps, null);
                 videos = videoview.findViewById(R.id.appGridViewapp);
                 videos.setAdapter(appAdaptar);
+                root.addView(videoview);
+            }
+        });
+        showmusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                root.removeAllViews();
+                View videoview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallmusics, null);
+                showmusic = videoview.findViewById(R.id.galleryGridViewmusic);
+                showmusic.set
                 root.addView(videoview);
             }
         });
