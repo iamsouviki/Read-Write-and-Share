@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -20,6 +21,7 @@ public class ImageAdaptar extends BaseAdapter {
     String type ;
     String[] projection;
     Uri uri;
+    LayoutInflater layoutInflater;
 
     ImageAdaptar(Context context,String type){
         this.context=context;
@@ -44,16 +46,16 @@ public class ImageAdaptar extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        ImageView picturesView;
-        if (view == null) {
-            picturesView = new ImageView(context);
-            picturesView.setScaleType(ImageView.ScaleType.FIT_XY);
-            picturesView
-                    .setLayoutParams(new GridView.LayoutParams(800, 800));
 
-        } else {
-            picturesView = (ImageView) view;
+        if(layoutInflater == null){
+            layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
+        if (view == null) {
+           view = layoutInflater.inflate(R.layout.gridimages,null);
+
+        }
+
+        ImageView picturesView = view.findViewById(R.id.pictureandvideo);
 
         Glide.with(context).load(ImageArray.get(i))
                 .centerCrop()

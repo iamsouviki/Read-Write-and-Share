@@ -7,11 +7,13 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
@@ -23,6 +25,7 @@ public class AppAdaptar extends BaseAdapter {
     ArrayList<String> AppNamelist;
     ArrayList<Drawable> AppIconlist;
     Context context;
+    LayoutInflater layoutInflater;
 
     AppAdaptar(Context context){
         this.context = context;
@@ -46,22 +49,23 @@ public class AppAdaptar extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        ImageView picturesView;
-        if (view == null) {
-            picturesView = new ImageView(context);
-            picturesView.setScaleType(ImageView.ScaleType.FIT_XY);
-            picturesView
-                    .setLayoutParams(new GridView.LayoutParams(200, 200));
-
-        } else {
-            picturesView = (ImageView) view;
+        if(layoutInflater == null){
+            layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
+        if (view == null) {
+            view = layoutInflater.inflate(R.layout.gridapps,null);
+
+        }
+
+        ImageView picturesView = view.findViewById(R.id.appiconimage);
+        TextView appname = view.findViewById(R.id.appnameout);
 
         Glide.with(context).load(AppIconlist.get(i))
                 .centerCrop()
                 .into(picturesView);
+        appname.setText(AppNamelist.get(i));
 
-        return picturesView;
+        return view;
     }
 
     public void loadApps() {

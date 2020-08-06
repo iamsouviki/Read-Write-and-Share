@@ -6,13 +6,12 @@
 
     <GridView
         android:id="@+id/galleryGridViewimage"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="5dp"
-        android:numColumns="2"
+        android:horizontalSpacing="5dp"
+        android:verticalSpacing="5dp"
+        android:numColumns="3"
         android:stretchMode="columnWidth"
         >
     </GridView>
