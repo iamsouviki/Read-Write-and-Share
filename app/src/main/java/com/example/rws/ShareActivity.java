@@ -57,7 +57,12 @@ public class ShareActivity extends AppCompatActivity {
         root = findViewById(R.id.sharecontent);
 
         appAdaptar = new AppAdaptar(ShareActivity.this);
-        Toast.makeText(getApplicationContext(), appAdaptar.AppIconlist.size()+""+appAdaptar.AppNamelist.size()+"", Toast.LENGTH_SHORT).show();
+
+        root.removeAllViews();
+        View videoview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallapps, null);
+        videos = videoview.findViewById(R.id.appGridViewapp);
+        videos.setAdapter(appAdaptar);
+        root.addView(videoview);
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
