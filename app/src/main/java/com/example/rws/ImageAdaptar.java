@@ -1,18 +1,14 @@
 package com.example.rws;
 
-import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.bumptech.glide.Glide;
 
@@ -67,6 +63,7 @@ public class ImageAdaptar extends BaseAdapter {
 
     }
     private ArrayList<String> getAllShownImagesPath(Context activity) {
+
         Cursor cursor;
         int column_index_data, column_index_folder_name;
         ArrayList<String> listOfAllImages = new ArrayList<String>();
@@ -74,8 +71,8 @@ public class ImageAdaptar extends BaseAdapter {
         if(type == "pic"){
         uri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 
-        String[] projection = { MediaStore.MediaColumns.DATA,
-                MediaStore.Images.Media.BUCKET_DISPLAY_NAME };
+        projection = new String[]{MediaStore.MediaColumns.DATA,
+                MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
         }else if(type == "video") {
             uri = android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
             projection = new String[]{MediaStore.MediaColumns.DATA,

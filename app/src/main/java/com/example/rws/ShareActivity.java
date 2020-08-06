@@ -35,9 +35,10 @@ public class ShareActivity extends AppCompatActivity {
     AlertDialog alertDialog;
     Button sendfile,recievefile,showpic,showvideos,showapps;
     WifiManager wifiManager;
-    GridView pictures,videos,apps;
+    GridView pictures,videos;
     ViewGroup root;
     ImageAdaptar imageAdaptar;
+    AppAdaptar appAdaptar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +54,10 @@ public class ShareActivity extends AppCompatActivity {
         showvideos = findViewById(R.id.showvideos);
         showapps = findViewById(R.id.showapps);
 
-
         root = findViewById(R.id.sharecontent);
+
+        appAdaptar = new AppAdaptar(ShareActivity.this);
+        Toast.makeText(getApplicationContext(), appAdaptar.AppIconlist.size()+""+appAdaptar.AppNamelist.size()+"", Toast.LENGTH_SHORT).show();
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -96,16 +99,15 @@ public class ShareActivity extends AppCompatActivity {
                 root.addView(videoview);
             }
         });
+
         showapps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 root.removeAllViews();
-                View appview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallapps, null);
-                apps = appview.findViewById(R.id.appGridViewapp);
-                imageAdaptar = new ImageAdaptar(ShareActivity.this,"apps");
-                apps.setAdapter(imageAdaptar);
-                root.addView(appview);
-
+                View videoview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallapps, null);
+                videos = videoview.findViewById(R.id.appGridViewapp);
+                videos.setAdapter(appAdaptar);
+                root.addView(videoview);
             }
         });
 
