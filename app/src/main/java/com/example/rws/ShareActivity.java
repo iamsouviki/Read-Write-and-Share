@@ -116,16 +116,16 @@ public class ShareActivity extends AppCompatActivity {
                 root.addView(videoview);
             }
         });
-        showmusic.setOnClickListener(new View.OnClickListener() {
+       /* showmusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 root.removeAllViews();
                 View videoview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallmusics, null);
                 showmusic = videoview.findViewById(R.id.galleryGridViewmusic);
-                showmusic.set
+                showmusic.setAdapter();
                 root.addView(videoview);
             }
-        });
+        });*/
 
 
     }

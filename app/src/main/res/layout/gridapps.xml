@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/appiconimage"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
         app:srcCompat="@drawable/ic_baseline_folder_open_24" />
 
