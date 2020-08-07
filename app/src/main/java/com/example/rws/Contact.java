@@ -58,7 +58,7 @@ public class Contact extends AppCompatActivity {
         moti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/t.r.o.f.e.e/")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/s13thirteen/")));
 
             }
         });

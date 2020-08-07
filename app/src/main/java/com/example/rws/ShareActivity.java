@@ -82,7 +82,7 @@ public class ShareActivity extends AppCompatActivity {
         }).setCancelable(false);
 
         alertDialog = builder.create();
-        
+
         showpic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
