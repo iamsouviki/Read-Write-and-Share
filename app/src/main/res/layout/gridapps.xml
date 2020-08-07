@@ -20,4 +20,6 @@
         android:textStyle="bold"
         android:layout_gravity="center"
         android:text="TextView" />
+    
+
 </LinearLayout>

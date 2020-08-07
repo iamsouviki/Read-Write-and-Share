@@ -61,7 +61,7 @@ public class ImageAdaptar extends BaseAdapter {
                 .centerCrop()
                 .into(picturesView);
 
-        return picturesView;
+        return view;
 
     }
     private ArrayList<String> getAllShownImagesPath(Context activity) {
