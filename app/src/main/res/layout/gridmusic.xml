@@ -6,14 +6,13 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/appiconimage"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/ic_baseline_folder_open_24" />
+        app:srcCompat="@drawable/musicicon" />
 
     <TextView
-        android:id="@+id/appnameout"
+        android:id="@+id/musicnameout"
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:textAlignment="center"

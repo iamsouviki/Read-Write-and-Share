@@ -1,5 +1,6 @@
 package com.example.rws;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -8,30 +9,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
-import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ImageAdaptar extends BaseAdapter {
+public class MusicAdaptar extends BaseAdapter {
     Context context;
-    ArrayList<String> ImageArray;
-    String type ;
+    ArrayList<String> listOfAllAudioName;
+    ArrayList<String> listOfAllAudio;
     String[] projection;
     Uri uri;
     LayoutInflater layoutInflater;
 
-    ImageAdaptar(Context context,String type){
+    MusicAdaptar(Context context){
         this.context=context;
-        this.type = type;
-        ImageArray = getAllShownImagesPath(context);
+        listOfAllAudio=getAllShownAudioName(context);
 
     }
+
     @Override
     public int getCount() {
-        return ImageArray.size();
+        return listOfAllAudio.size();
     }
 
     @Override
@@ -46,40 +44,29 @@ public class ImageAdaptar extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-
         if(layoutInflater == null){
             layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
         if (view == null) {
-           view = layoutInflater.inflate(R.layout.gridimages,null);
+            view = layoutInflater.inflate(R.layout.gridmusic,null);
 
         }
+        TextView musicname = view.findViewById(R.id.musicnameout);
 
-        ImageView picturesView = view.findViewById(R.id.pictureandvideo);
-
-        Glide.with(context).load(ImageArray.get(i))
-                .centerCrop()
-                .into(picturesView);
+        musicname.setText(listOfAllAudioName.get(i).toString());
 
         return view;
-
     }
-    private ArrayList<String> getAllShownImagesPath(Context activity) {
+    private ArrayList<String> getAllShownAudioName(Context activity) {
 
         Cursor cursor;
         int data;
         ArrayList<String> listOfAllImages = new ArrayList<String>();
-        String absolutePathOfImage = null;
-        if(type == "pic"){
-        uri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+        String absolutePathOfImage = "5";
 
-        projection = new String[]{MediaStore.MediaColumns.DATA,
-                MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
-        }else if(type == "video") {
-            uri = android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+            uri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
             projection = new String[]{MediaStore.MediaColumns.DATA,
-                    MediaStore.Video.Media.BUCKET_DISPLAY_NAME};
-        }
+                    MediaStore.Audio.Media.DISPLAY_NAME};
 
 
         cursor = activity.getContentResolver().query(uri, projection, null,
@@ -89,9 +76,12 @@ public class ImageAdaptar extends BaseAdapter {
 
         while (cursor.moveToNext()) {
             absolutePathOfImage = cursor.getString(data);
-
-            listOfAllImages.add(absolutePathOfImage);
+            if(absolutePathOfImage==null){
+                absolutePathOfImage = "souvik";
+            }
+            listOfAllAudioName.add(absolutePathOfImage);
         }
-        return listOfAllImages;
+
+        return  listOfAllAudioName;
     }
 }

@@ -35,7 +35,7 @@ public class ShareActivity extends AppCompatActivity {
     AlertDialog alertDialog;
     Button sendfile,recievefile,showpic,showvideos,showapps,showmusic;
     WifiManager wifiManager;
-    GridView pictures,videos;
+    GridView pictures,videos,music,apps;
     ViewGroup root;
     ImageAdaptar imageAdaptar;
     AppAdaptar appAdaptar;
@@ -111,21 +111,25 @@ public class ShareActivity extends AppCompatActivity {
             public void onClick(View view) {
                 root.removeAllViews();
                 View videoview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallapps, null);
-                videos = videoview.findViewById(R.id.appGridViewapp);
-                videos.setAdapter(appAdaptar);
+                apps = videoview.findViewById(R.id.appGridViewapp);
+                apps.setAdapter(appAdaptar);
                 root.addView(videoview);
             }
         });
-       /* showmusic.setOnClickListener(new View.OnClickListener() {
+
+        //error
+       showmusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 root.removeAllViews();
                 View videoview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallmusics, null);
-                showmusic = videoview.findViewById(R.id.galleryGridViewmusic);
-                showmusic.setAdapter();
+                music = videoview.findViewById(R.id.galleryGridViewmusic);
+               /* MusicAdaptar musicAdaptar = new MusicAdaptar(ShareActivity.this);
+                music.setAdapter(musicAdaptar);*/
+               Toast.makeText(getApplicationContext(), "Coming ", Toast.LENGTH_SHORT).show();
                 root.addView(videoview);
             }
-        });*/
+        });
 
 
     }
