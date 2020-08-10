@@ -26,16 +26,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import org.xmlpull.v1.XmlPullParser;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.rws.R.layout.savefiledialogue;
 
 public class ShareActivity extends AppCompatActivity {
     AlertDialog alertDialog;
@@ -50,10 +56,12 @@ public class ShareActivity extends AppCompatActivity {
     BroadcastReceiver receiver;
     IntentFilter intentFilter;
     private List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();
-    ArrayList<String> DeviceNamearray;
-    ArrayList<WifiP2pDevice> Devicearray;
+    String[] DeviceNamearray;
+    WifiP2pDevice[] Devicearray;
     WifiP2pManager.PeerListListener peerListListener;
     String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
+    ListView mobilelist;
+    AlertDialog alertDialog1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +70,17 @@ public class ShareActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Share");
         requestPermissions(permissions,5);
+
+
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        LayoutInflater inf = this.getLayoutInflater();
+
+        final View dialogView = inf.inflate(R.layout.mobilelist,null);
+
+        builder1.setView(dialogView);
+        builder1.setCancelable(true);
+        alertDialog1 = builder1.create();
+        mobilelist = dialogView.findViewById(R.id.mobilelistview);
 
         manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
         channel = manager.initialize(this, getMainLooper(), null);
@@ -80,14 +99,20 @@ public class ShareActivity extends AppCompatActivity {
                 if (!refreshedPeers.equals(peers)) {
                     peers.clear();
                     peers.addAll(refreshedPeers);
+                    DeviceNamearray = new String[peerList.getDeviceList().size()];
+                    Devicearray = new WifiP2pDevice[peerList.getDeviceList().size()];
                 }
+                int index =0;
 
                 for (WifiP2pDevice device : peerList.getDeviceList()) {
-                    DeviceNamearray.add(device.deviceName);
-                    Devicearray.add(device);
+                    DeviceNamearray[index]=device.deviceName;
+                    Devicearray[index]=device;
+                    index++;
                 }
 
-                Toast.makeText(ShareActivity.this, DeviceNamearray.toString() + "\n" + Devicearray.toString(), Toast.LENGTH_SHORT).show();
+                ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_2,DeviceNamearray);
+                mobilelist.setAdapter(adapter);
+
 
                 if (peers.size() == 0) {
                     Toast.makeText(getApplicationContext(), "No device found", Toast.LENGTH_SHORT).show();
@@ -188,6 +213,9 @@ public class ShareActivity extends AppCompatActivity {
                 if (!wifiManager.isWifiEnabled()) {
                     wifiManager.setWifiEnabled(true);
                 }
+
+                alertDialog1.show();
+                alertDialog1.setCancelable(true);
                 if (ActivityCompat.checkSelfPermission(ShareActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
