@@ -28,6 +28,15 @@
         android:textAllCaps="false" />
 
     <Button
+        android:id="@+id/souvik"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:stateListAnimator="@null"
+        android:text="Souvik Ghosh"
+        android:textAllCaps="false" />
+
+    <Button
         android:id="@+id/sankar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,15 +44,6 @@
         android:background="?android:attr/selectableItemBackground"
         android:textAllCaps="false"
         android:text="Sankar Prasad Giri" />
-
-    <Button
-        android:id="@+id/souvik"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:stateListAnimator="@null"
-        android:background="?android:attr/selectableItemBackground"
-        android:textAllCaps="false"
-        android:text="Souvik Ghosh" />
 
     <Button
         android:id="@+id/moti"
