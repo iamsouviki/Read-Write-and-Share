@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,7 +57,6 @@ public class AppAdaptar extends BaseAdapter {
 
         ImageView picturesView = view.findViewById(R.id.appiconimage);
         TextView appname = view.findViewById(R.id.appnameout);
-
         Glide.with(context).load(AppIconlist.get(i))
                 .centerCrop()
                 .into(picturesView);

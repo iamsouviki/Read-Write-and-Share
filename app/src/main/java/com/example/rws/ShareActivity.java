@@ -3,16 +3,21 @@ package com.example.rws;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
+import android.net.wifi.p2p.WifiP2pDevice;
+import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -30,15 +35,25 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShareActivity extends AppCompatActivity {
     AlertDialog alertDialog;
-    Button sendfile,recievefile,showpic,showvideos,showapps,showmusic;
+    Button sendfile, recievefile, showpic, showvideos, showapps, showmusic;
     WifiManager wifiManager;
-    GridView pictures,videos,music,apps;
+    GridView pictures, videos, music, apps;
     ViewGroup root;
     ImageAdaptar imageAdaptar;
     AppAdaptar appAdaptar;
+    WifiP2pManager manager;
+    WifiP2pManager.Channel channel;
+    BroadcastReceiver receiver;
+    IntentFilter intentFilter;
+    private List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();
+    ArrayList<String> DeviceNamearray;
+    ArrayList<WifiP2pDevice> Devicearray;
+    WifiP2pManager.PeerListListener peerListListener;
+    String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +61,40 @@ public class ShareActivity extends AppCompatActivity {
         setContentView(R.layout.activity_share);
 
         getSupportActionBar().setTitle("Share");
+        requestPermissions(permissions,5);
+
+        manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
+        channel = manager.initialize(this, getMainLooper(), null);
+        receiver = new WiFiDirectBroadcastReceiver(manager, channel, this);
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+
+        peerListListener = new WifiP2pManager.PeerListListener() {
+            @Override
+            public void onPeersAvailable(WifiP2pDeviceList peerList) {
+
+                List<WifiP2pDevice> refreshedPeers = (List<WifiP2pDevice>) peerList.getDeviceList();
+                if (!refreshedPeers.equals(peers)) {
+                    peers.clear();
+                    peers.addAll(refreshedPeers);
+                }
+
+                for (WifiP2pDevice device : peerList.getDeviceList()) {
+                    DeviceNamearray.add(device.deviceName);
+                    Devicearray.add(device);
+                }
+
+                Toast.makeText(ShareActivity.this, DeviceNamearray.toString() + "\n" + Devicearray.toString(), Toast.LENGTH_SHORT).show();
+
+                if (peers.size() == 0) {
+                    Toast.makeText(getApplicationContext(), "No device found", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+        };
 
 
         sendfile = findViewById(R.id.send);
@@ -60,10 +109,12 @@ public class ShareActivity extends AppCompatActivity {
         appAdaptar = new AppAdaptar(ShareActivity.this);
 
         root.removeAllViews();
-        View videoview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallapps, null);
-        videos = videoview.findViewById(R.id.appGridViewapp);
+        View appview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallapps, null);
+        videos = appview.findViewById(R.id.appGridViewapp);
         videos.setAdapter(appAdaptar);
-        root.addView(videoview);
+        root.addView(appview);
+
+        wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -82,14 +133,14 @@ public class ShareActivity extends AppCompatActivity {
         }).setCancelable(false);
 
         alertDialog = builder.create();
-        
+
         showpic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 root.removeAllViews();
                 View picview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallpictures, null);
                 pictures = picview.findViewById(R.id.galleryGridViewimage);
-                imageAdaptar = new ImageAdaptar(ShareActivity.this,"pic");
+                imageAdaptar = new ImageAdaptar(ShareActivity.this, "pic");
                 pictures.setAdapter(imageAdaptar);
                 root.addView(picview);
             }
@@ -100,7 +151,7 @@ public class ShareActivity extends AppCompatActivity {
                 root.removeAllViews();
                 View videoview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallvideos, null);
                 videos = videoview.findViewById(R.id.galleryGridViewvideo);
-                imageAdaptar = new ImageAdaptar(ShareActivity.this,"video");
+                imageAdaptar = new ImageAdaptar(ShareActivity.this, "video");
                 videos.setAdapter(imageAdaptar);
                 root.addView(videoview);
             }
@@ -110,15 +161,15 @@ public class ShareActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 root.removeAllViews();
-                View videoview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallapps, null);
-                apps = videoview.findViewById(R.id.appGridViewapp);
+                View appview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallapps, null);
+                apps = appview.findViewById(R.id.appGridViewapp);
                 apps.setAdapter(appAdaptar);
-                root.addView(videoview);
+                root.addView(appview);
             }
         });
 
         //error
-       showmusic.setOnClickListener(new View.OnClickListener() {
+        showmusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 root.removeAllViews();
@@ -126,12 +177,67 @@ public class ShareActivity extends AppCompatActivity {
                 music = videoview.findViewById(R.id.galleryGridViewmusic);
                /* MusicAdaptar musicAdaptar = new MusicAdaptar(ShareActivity.this);
                 music.setAdapter(musicAdaptar);*/
-               Toast.makeText(getApplicationContext(), "Coming ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Coming ", Toast.LENGTH_SHORT).show();
                 root.addView(videoview);
             }
         });
 
+        sendfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!wifiManager.isWifiEnabled()) {
+                    wifiManager.setWifiEnabled(true);
+                }
+                if (ActivityCompat.checkSelfPermission(ShareActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
+                    @Override
+                    public void onSuccess() {
+                        Toast.makeText(getApplicationContext(), "Discovering Started", Toast.LENGTH_SHORT).show();
+                    }
 
+                    @Override
+                    public void onFailure(int reasonCode) {
+                        Toast.makeText(getApplicationContext(), "Failed to Start Discovering", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+        });
+
+
+        recievefile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ActivityCompat.checkSelfPermission(ShareActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(ShareActivity.this, "Give Permission", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
+                    @Override
+                    public void onSuccess() {
+                        Toast.makeText(getApplicationContext(), "Discovering Started", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(int reasonCode) {
+                        Toast.makeText(getApplicationContext(), "Failed to Start Discovering", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 5:
+                if(grantResults[0] != PackageManager.PERMISSION_GRANTED){
+                    Toast.makeText(getApplicationContext(), "Please Give Storage Permission", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
     }
 
     @Override
@@ -155,7 +261,18 @@ public class ShareActivity extends AppCompatActivity {
     }
 
 
-
+    /* register the broadcast receiver with the intent values to be matched */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(receiver, intentFilter);
+    }
+    /* unregister the broadcast receiver */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(receiver);
+    }
 
 
 }
