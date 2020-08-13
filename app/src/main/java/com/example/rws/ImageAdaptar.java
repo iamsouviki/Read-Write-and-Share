@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +13,19 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ImageAdaptar extends BaseAdapter {
     Context context;
-    ArrayList<String> ImageArray;
+    List<String> ImageArray;
     String type ;
     String[] projection;
     Uri uri;
+    ImageView picturesView;
     LayoutInflater layoutInflater;
 
     ImageAdaptar(Context context,String type){
@@ -55,16 +60,16 @@ public class ImageAdaptar extends BaseAdapter {
 
         }
 
-        ImageView picturesView = view.findViewById(R.id.pictureandvideo);
-
-        Glide.with(context).load(ImageArray.get(i))
-                .centerCrop()
+        picturesView = view.findViewById(R.id.pictureandvideo);
+        Log.e("Images",ImageArray.get(i));
+        Glide.with(context).load(Uri.fromFile(new File(ImageArray.get(i))))
+                .apply(new RequestOptions().override(100, 100))
                 .into(picturesView);
 
         return view;
 
     }
-    private ArrayList<String> getAllShownImagesPath(Context activity) {
+    private List<String> getAllShownImagesPath(Context activity) {
 
         Cursor cursor;
         int data;
@@ -92,6 +97,8 @@ public class ImageAdaptar extends BaseAdapter {
 
             listOfAllImages.add(absolutePathOfImage);
         }
+        Log.e("Total Images Returned",listOfAllImages.size()+"");
+        Log.e("Images Returned ",listOfAllImages.get(0));
         return listOfAllImages;
     }
 }

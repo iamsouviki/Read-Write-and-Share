@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ public class MusicAdaptar extends BaseAdapter {
 
     MusicAdaptar(Context context){
         this.context=context;
+        listOfAllAudioName = new ArrayList<>();
         listOfAllAudio=getAllShownAudioName(context);
 
     }
@@ -53,7 +55,7 @@ public class MusicAdaptar extends BaseAdapter {
         }
         TextView musicname = view.findViewById(R.id.musicnameout);
 
-        musicname.setText(listOfAllAudioName.get(i).toString());
+        musicname.setText(listOfAllAudioName.get(i));
 
         return view;
     }
@@ -81,7 +83,7 @@ public class MusicAdaptar extends BaseAdapter {
             }
             listOfAllAudioName.add(absolutePathOfImage);
         }
-
+        Log.e("Total Music Files",listOfAllAudioName.size()+"");
         return  listOfAllAudioName;
     }
 }

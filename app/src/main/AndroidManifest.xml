@@ -17,13 +17,15 @@
         android:icon="@drawable/iv"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:requestLegacyExternalStorage="true">
         <activity android:name=".NoteViewPage" />
         <activity android:name=".Contact" />
         <activity android:name=".TermsAndPolicy" />
         <activity android:name=".AappInfo" />
         <activity android:name=".AboutActivity" />
-        <activity android:name=".ShareActivity" />
+        <activity android:name=".ShareActivity"
+            android:theme="@style/Theme.MaterialComponents.Light"/>
         <activity android:name=".Note" />
         <activity android:name=".CreateNewFile" />
         <activity android:name=".MainActivity" />
