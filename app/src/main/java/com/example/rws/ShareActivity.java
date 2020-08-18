@@ -41,11 +41,12 @@ import org.xmlpull.v1.XmlPullParser;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import static com.example.rws.R.layout.savefiledialogue;
 
 public class ShareActivity extends AppCompatActivity {
     AlertDialog alertDialog;
-    Button sendfile, recievefile, showpic, showvideos, showapps, showmusic;
+    Button sendfile, recievefile, showpic, showvideos, showapps, showmusic,showfiles;
     WifiManager wifiManager;
     GridView pictures, videos, music, apps;
     ViewGroup root;
@@ -128,6 +129,7 @@ public class ShareActivity extends AppCompatActivity {
         showvideos = findViewById(R.id.showvideos);
         showapps = findViewById(R.id.showapps);
         showmusic = findViewById(R.id.showmusic);
+        showfiles = findViewById(R.id.showfiles);
 
         root = findViewById(R.id.sharecontent);
 
@@ -253,6 +255,17 @@ public class ShareActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Failed to Start Discovering", Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        });
+
+        showfiles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent files= new Intent(ShareActivity.this,Show_all_files.class);
+                startActivity(files);
+                finish();
+
+
             }
         });
 
