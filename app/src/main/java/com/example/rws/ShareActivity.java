@@ -219,7 +219,6 @@ public class ShareActivity extends AppCompatActivity {
                 music = videoview.findViewById(R.id.galleryGridViewmusic);
                 MusicAdaptar musicAdaptar = new MusicAdaptar(ShareActivity.this);
                 music.setAdapter(musicAdaptar);
-                Toast.makeText(getApplicationContext(), "Coming ", Toast.LENGTH_SHORT).show();
                 root.addView(videoview);
             }
         });
