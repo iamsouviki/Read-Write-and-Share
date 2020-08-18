@@ -53,9 +53,11 @@ public class MusicAdaptar extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.gridmusic,null);
 
         }
-        TextView musicname = view.findViewById(R.id.musicnameout);
+        TextView musicn = view.findViewById(R.id.musicnameout);
 
-        musicname.setText(listOfAllAudioName.get(i));
+        String musicname[] = listOfAllAudioName.get(i).split("/");
+
+        musicn.setText(musicname[musicname.length-1]);
 
         return view;
     }

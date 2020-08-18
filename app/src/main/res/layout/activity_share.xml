@@ -61,7 +61,7 @@
             android:text="Pictures"
             android:textSize="11sp"
             android:maxLines="1"
-            android:background="#FFFFFF"
+            android:background="#FFF"
             android:layout_gravity="center"/>
 
         <Button

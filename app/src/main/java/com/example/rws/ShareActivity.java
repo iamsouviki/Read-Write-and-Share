@@ -20,6 +20,7 @@ import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -38,6 +39,7 @@ import com.bumptech.glide.Glide;
 
 import org.xmlpull.v1.XmlPullParser;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +50,7 @@ public class ShareActivity extends AppCompatActivity {
     AlertDialog alertDialog;
     Button sendfile, recievefile, showpic, showvideos, showapps, showmusic,showfiles;
     WifiManager wifiManager;
-    GridView pictures, videos, music, apps;
+    GridView pictures, videos, music, apps,folders;
     ViewGroup root;
     ImageAdaptar imageAdaptar;
     AppAdaptar appAdaptar;
@@ -195,6 +197,19 @@ public class ShareActivity extends AppCompatActivity {
             }
         });
 
+
+        showfiles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                File root1 = new File(Environment.getExternalStorageDirectory().getName());
+                View folderview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallfiles,null);
+                folders = folderview.findViewById(R.id.folderGridView);
+                //FileAdaptar fileAdaptar = new FileAdaptar(ShareActivity.this,root1);
+                //folders.setAdapter(fileAdaptar);
+                root.addView(folderview);
+            }
+        });
+
         //error
         showmusic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -258,16 +273,6 @@ public class ShareActivity extends AppCompatActivity {
             }
         });
 
-        showfiles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent files= new Intent(ShareActivity.this,Show_all_files.class);
-                startActivity(files);
-                finish();
-
-
-            }
-        });
 
     }
     @Override
