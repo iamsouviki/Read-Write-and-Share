@@ -33,5 +33,5 @@ public class Show_all_files extends ListActivity {
 
         setListAdapter(dir);
     }
-    //kads
+
 }
