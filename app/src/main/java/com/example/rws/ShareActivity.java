@@ -171,6 +171,9 @@ public class ShareActivity extends AppCompatActivity {
                 pictures = picview.findViewById(R.id.galleryGridViewimage);
                 imageAdaptar = new ImageAdaptar(ShareActivity.this, "pic");
                 pictures.setAdapter(imageAdaptar);
+                if(imageAdaptar.ImageArray.size()==0){
+                    Toast.makeText(getApplicationContext(), "No Photos to Show", Toast.LENGTH_LONG).show();
+                }
                 root.addView(picview);
             }
         });
@@ -182,6 +185,9 @@ public class ShareActivity extends AppCompatActivity {
                 videos = videoview.findViewById(R.id.galleryGridViewvideo);
                 imageAdaptar = new ImageAdaptar(ShareActivity.this, "video");
                 videos.setAdapter(imageAdaptar);
+                if(imageAdaptar.ImageArray.size()==0){
+                    Toast.makeText(getApplicationContext(), "No Videos to Show", Toast.LENGTH_LONG).show();
+                }
                 root.addView(videoview);
             }
         });
@@ -201,6 +207,7 @@ public class ShareActivity extends AppCompatActivity {
         showfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                root.removeAllViews();
                 File root1 = new File(Environment.getExternalStorageDirectory().getName());
                 View folderview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallfiles,null);
                 folders = folderview.findViewById(R.id.folderGridView);
@@ -219,6 +226,9 @@ public class ShareActivity extends AppCompatActivity {
                 music = videoview.findViewById(R.id.galleryGridViewmusic);
                 MusicAdaptar musicAdaptar = new MusicAdaptar(ShareActivity.this);
                 music.setAdapter(musicAdaptar);
+                if(musicAdaptar.listOfAllAudioName.size()==0){
+                    Toast.makeText(getApplicationContext(), "No Audio to Show", Toast.LENGTH_LONG).show();
+                }
                 root.addView(videoview);
             }
         });

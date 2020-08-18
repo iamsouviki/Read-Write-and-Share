@@ -97,8 +97,6 @@ public class ImageAdaptar extends BaseAdapter {
 
             listOfAllImages.add(absolutePathOfImage);
         }
-        Log.e("Total Images Returned",listOfAllImages.size()+"");
-        Log.e("Images Returned ",listOfAllImages.get(0));
         return listOfAllImages;
     }
 }
