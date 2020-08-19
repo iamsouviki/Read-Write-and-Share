@@ -36,7 +36,7 @@ public class CreateNewFile extends AppCompatActivity {
     String content,FILE_NAME;
     String filecontent;
     File file,textFile;
-
+    int mn;
     int t=2;
     AlertDialog alertDialog,alertDialog1,alert;
     boolean ch;
@@ -186,7 +186,7 @@ public class CreateNewFile extends AppCompatActivity {
                 alertDialog1.show();
                 alertDialog1.setCancelable(false);
             case R.id.undo:
-                    int mn = textcontent.size() - t;
+                    mn = textcontent.size() - t;
                 if(textcontent.size()>1 && mn>-1) {
                     body.setText(textcontent.get(mn));
                     t++;
@@ -195,13 +195,12 @@ public class CreateNewFile extends AppCompatActivity {
 
                 }
             case R.id.redo:
-                int re = textcontentt.size() -t;
-                if(textcontentt.size()<1 && re<-1){
-                    body.setText(textcontentt.get(re));
-                    t--;
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Nothing to Redo", Toast.LENGTH_SHORT).show();
+                mn = textcontent.size() - t;
+                if(textcontent.size()>1 && mn>+1) {
+                    body.setText(textcontent.get(mn));
+                    t++;
+                }else{
+                    Toast.makeText(getApplicationContext(), "Nothing to redo", Toast.LENGTH_SHORT).show();
 
                 }
 
