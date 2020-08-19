@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static com.example.rws.R.layout.savefiledialogue;
 
@@ -35,8 +37,11 @@ public class CreateNewFile extends AppCompatActivity {
     String filecontent;
     File file,textFile;
 
+    int t=2;
     AlertDialog alertDialog,alertDialog1,alert;
     boolean ch;
+
+    ArrayList <String> textcontent = new ArrayList<String>() ;
 
     String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
@@ -72,6 +77,14 @@ public class CreateNewFile extends AppCompatActivity {
         }
 
 
+        //undo-redo
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                undo();
+                new Handler().postDelayed(this,500);
+            }
+        },500);
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -170,7 +183,15 @@ public class CreateNewFile extends AppCompatActivity {
             case R.id.save:
                 alertDialog1.show();
                 alertDialog1.setCancelable(false);
+            case R.id.undo:
+                int mn = textcontent.size() - t;
+                if(textcontent.size()>1 && mn>-1) {
+                    body.setText(textcontent.get(mn));
+                    t++;
+                }else{
+                        Toast.makeText(getApplicationContext(), "Nothing to Undo", Toast.LENGTH_SHORT).show();
 
+                }
         }
 
 
@@ -224,4 +245,22 @@ public class CreateNewFile extends AppCompatActivity {
         }
     }
 
+    void undo(){
+        String b = body.getText().toString();
+        String c;
+        if(textcontent.size()==0){
+            c=textcontent.toString();
+        }else {
+            c = textcontent.get(textcontent.size() - 1).toString();
+        }
+        if(textcontent.size()==0 ){
+            textcontent.add("");
+            //Toast.makeText(getApplicationContext(), "Running", Toast.LENGTH_LONG).show();
+        }else{
+            if(!c.equals(b) && !textcontent.contains(b)){
+                textcontent.add(b);
+               // Toast.makeText(getApplicationContext(), textcontent.toString()+"", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 }
