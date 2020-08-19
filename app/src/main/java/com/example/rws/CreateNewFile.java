@@ -42,6 +42,8 @@ public class CreateNewFile extends AppCompatActivity {
     boolean ch;
 
     ArrayList <String> textcontent = new ArrayList<String>() ;
+    ArrayList <String> textcontentt = new ArrayList<String>() ;
+
 
     String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
@@ -184,7 +186,7 @@ public class CreateNewFile extends AppCompatActivity {
                 alertDialog1.show();
                 alertDialog1.setCancelable(false);
             case R.id.undo:
-                int mn = textcontent.size() - t;
+                    int mn = textcontent.size() - t;
                 if(textcontent.size()>1 && mn>-1) {
                     body.setText(textcontent.get(mn));
                     t++;
@@ -192,6 +194,18 @@ public class CreateNewFile extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Nothing to Undo", Toast.LENGTH_SHORT).show();
 
                 }
+            case R.id.redo:
+                int re = textcontentt.size() -t;
+                if(textcontentt.size()<1 && re<-1){
+                    body.setText(textcontentt.get(re));
+                    t--;
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Nothing to Redo", Toast.LENGTH_SHORT).show();
+
+                }
+
+
         }
 
 
