@@ -36,14 +36,12 @@ public class CreateNewFile extends AppCompatActivity {
     String content,FILE_NAME;
     String filecontent;
     File file,textFile;
-    int mn;
-    int t=2;
+
+    int t=2,mn,k;
     AlertDialog alertDialog,alertDialog1,alert;
     boolean ch;
 
     ArrayList <String> textcontent = new ArrayList<String>() ;
-    ArrayList <String> textcontentt = new ArrayList<String>() ;
-
 
     String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
@@ -186,25 +184,23 @@ public class CreateNewFile extends AppCompatActivity {
                 alertDialog1.show();
                 alertDialog1.setCancelable(false);
             case R.id.undo:
+                if(textcontent.size()>1 ) {
                     mn = textcontent.size() - t;
-                if(textcontent.size()>1 && mn>-1) {
+                    if(mn<0){
+                        body.setText("");
+                    }
                     body.setText(textcontent.get(mn));
                     t++;
                 }else{
                         Toast.makeText(getApplicationContext(), "Nothing to Undo", Toast.LENGTH_SHORT).show();
 
                 }
-            case R.id.redo:
-                mn = textcontent.size() - t;
-                if(textcontent.size()>1 && mn>+1) {
-                    body.setText(textcontent.get(mn));
-                    t++;
-                }else{
-                    Toast.makeText(getApplicationContext(), "Nothing to redo", Toast.LENGTH_SHORT).show();
-
+            case R.id.redofile:
+                if(textcontent.size()>1 && mn+1<textcontent.size()){
+                   body.setText(textcontent.get(mn+1));
+                    Toast.makeText(getApplicationContext(), textcontent.get(mn+1)+" "+mn, Toast.LENGTH_SHORT).show();
+                    mn++;
                 }
-
-
         }
 
 
@@ -272,7 +268,7 @@ public class CreateNewFile extends AppCompatActivity {
         }else{
             if(!c.equals(b) && !textcontent.contains(b)){
                 textcontent.add(b);
-               // Toast.makeText(getApplicationContext(), textcontent.toString()+"", Toast.LENGTH_LONG).show();
+               Toast.makeText(getApplicationContext(), textcontent.toString()+"", Toast.LENGTH_LONG).show();
             }
         }
     }
