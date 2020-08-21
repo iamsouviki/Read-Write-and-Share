@@ -27,11 +27,11 @@
             <item
                 android:id="@+id/zoomin"
                 android:title="Zoom In"
-                android:icon="@drawable/zoom"/>
+                android:icon="@drawable/zoomin"/>
             <item
                 android:id="@+id/zoomout"
                 android:title="Zoom Out"
-                android:icon="@drawable/zoom"/>
+                android:icon="@drawable/zoomout"/>
             <item
                 android:id="@+id/lighttheme"
                 android:title="Light Background"
