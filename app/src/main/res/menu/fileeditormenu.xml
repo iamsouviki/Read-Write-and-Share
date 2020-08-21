@@ -47,10 +47,7 @@
                 android:id="@+id/share"
                 android:icon="@drawable/share"
                 android:title="Share" />
-            <item
-                android:id="@+id/print"
-                android:icon="@drawable/print"
-                android:title="Print" />
+
             <item
                 android:id="@+id/info"
                 android:icon="@drawable/info"
