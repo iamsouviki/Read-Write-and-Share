@@ -39,7 +39,7 @@
             <item
                 android:id="@+id/darktheme"
                 android:title="Dark Background"
-                android:icon="@drawable/zoom"/>
+                />
 
 
         </menu>
