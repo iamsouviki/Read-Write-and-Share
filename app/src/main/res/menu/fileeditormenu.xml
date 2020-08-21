@@ -14,6 +14,16 @@
     <item android:title="Save"
         android:id="@+id/save"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/zoomout"
+        android:title="Zoom Out"
+        android:icon="@drawable/zoomout"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/zoomintext"
+        android:title="Zoom In"
+        android:icon="@drawable/zoomin"
+        app:showAsAction="always"/>
 
     <item android:icon="@drawable/ic_baseline_more_vert_24"
         app:showAsAction="always"
@@ -24,22 +34,6 @@
                 android:id="@+id/font"
                 android:icon="@drawable/ic_baseline_text_fields_24"
                 android:title="font" />
-            <item
-                android:id="@+id/zoomin"
-                android:title="Zoom In"
-                android:icon="@drawable/zoomin"/>
-            <item
-                android:id="@+id/zoomout"
-                android:title="Zoom Out"
-                android:icon="@drawable/zoomout"/>
-            <item
-                android:id="@+id/lighttheme"
-                android:title="Light Background"
-               />
-            <item
-                android:id="@+id/darktheme"
-                android:title="Dark Background"
-                />
 
 
         </menu>

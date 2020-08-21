@@ -37,7 +37,7 @@ public class CreateNewFile extends AppCompatActivity {
     String filecontent;
     File file,textFile;
 
-    int t=2,mn,k;
+    int t=2,mn,k,size=14;
     AlertDialog alertDialog,alertDialog1,alert;
     boolean ch;
 
@@ -200,6 +200,14 @@ public class CreateNewFile extends AppCompatActivity {
                    body.setText(textcontent.get(mn+1));
                     Toast.makeText(getApplicationContext(), textcontent.get(mn+1)+" "+mn, Toast.LENGTH_SHORT).show();
                     mn++;
+                }
+            case R.id.zoomintext:
+                size = size+2;
+                body.setTextSize(size);
+            case R.id.zoomout:
+                if(size>7) {
+                    size = size - 2;
+                    body.setTextSize(size - 2);
                 }
         }
 
