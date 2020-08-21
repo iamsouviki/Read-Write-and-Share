@@ -20,42 +20,28 @@
         android:title="more">
 
         <menu>
-
             <item
-                android:id="@+id/saveas"
-                android:icon="@drawable/save"
-                android:title="Save as" />
-            <item
-                android:id="@+id/front"
+                android:id="@+id/font"
                 android:icon="@drawable/ic_baseline_text_fields_24"
-                android:title="front" />
+                android:title="font" />
             <item
-                android:id="@+id/search"
-                android:icon="@drawable/search"
-                android:title="Search"
-                app:actionViewClass="android.widget.SearchView"></item>
-            <item
-                android:id="@+id/replace"
-                android:icon="@drawable/ffind"
-                android:title="Replace"
-                app:actionViewClass="android.widget.SearchView"></item>
-            <item
-                android:id="@+id/zoom"
-                android:title="Zoom"
+                android:id="@+id/zoomin"
+                android:title="Zoom In"
                 android:icon="@drawable/zoom"/>
             <item
-                android:id="@+id/share"
-                android:icon="@drawable/share"
-                android:title="Share" />
+                android:id="@+id/zoomout"
+                android:title="Zoom Out"
+                android:icon="@drawable/zoom"/>
+            <item
+                android:id="@+id/lighttheme"
+                android:title="Light Background"
+               />
+            <item
+                android:id="@+id/darktheme"
+                android:title="Dark Background"
+                android:icon="@drawable/zoom"/>
 
-            <item
-                android:id="@+id/info"
-                android:icon="@drawable/info"
-                android:title="Info" />
-            <item
-                android:id="@+id/close"
-                android:icon="@drawable/close"
-                android:title="Close" />
+
         </menu>
     </item>
 
