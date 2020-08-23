@@ -203,6 +203,7 @@ public class CreateNewFile extends AppCompatActivity {
             case R.id.save:
                 alertDialog1.show();
                 alertDialog1.setCancelable(false);
+                break;
             case R.id.undo:
                 if(textcontent.size()>1 ) {
                     mn = textcontent.size() - t;
@@ -215,12 +216,14 @@ public class CreateNewFile extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Nothing to Undo", Toast.LENGTH_SHORT).show();
 
                 }
+                break;
             case R.id.redofile:
                 if(textcontent.size()>1 && mn+1<textcontent.size()){
                    body.setText(textcontent.get(mn+1));
                     Toast.makeText(getApplicationContext(), textcontent.get(mn+1)+" "+mn, Toast.LENGTH_SHORT).show();
                     mn++;
                 }
+                break;
             case R.id.zoomintext:
                 size = size+2;
                 body.setTextSize(size);
