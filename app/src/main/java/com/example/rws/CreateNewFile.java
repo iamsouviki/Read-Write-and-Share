@@ -224,11 +224,13 @@ public class CreateNewFile extends AppCompatActivity {
             case R.id.zoomintext:
                 size = size+2;
                 body.setTextSize(size);
+                break;
             case R.id.zoomout:
                 if(size>7) {
                     size = size - 2;
                     body.setTextSize(size - 2);
                 }
+                break;
         }
 
 
