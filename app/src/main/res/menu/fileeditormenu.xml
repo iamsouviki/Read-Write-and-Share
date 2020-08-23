@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title=""
+    <item android:title="Undo"
         android:id="@+id/undo"
         android:icon="@drawable/ic_baseline_undo_24"
-        app:showAsAction="always"/>
-    <item android:title=""
+        />
+    <item android:title="Redo"
         android:id="@+id/redofile"
         android:icon="@drawable/ic_baseline_redo_24"
-        app:showAsAction="always"/>
+        />
 
     <item android:title="Save"
         android:id="@+id/save"
@@ -18,25 +18,15 @@
         android:id="@+id/zoomout"
         android:title="Zoom Out"
         android:icon="@drawable/zoomout"
-        app:showAsAction="always"/>
+       />
     <item
         android:id="@+id/zoomintext"
         android:title="Zoom In"
         android:icon="@drawable/zoomin"
-        app:showAsAction="always"/>
-
-    <item android:icon="@drawable/ic_baseline_more_vert_24"
-        app:showAsAction="always"
-        android:title="more">
-
-        <menu>
-            <item
-                android:id="@+id/font"
-                android:icon="@drawable/ic_baseline_text_fields_24"
-                android:title="font" />
-
-
-        </menu>
-    </item>
+        />
+    <item
+        android:id="@+id/font"
+        android:icon="@drawable/ic_baseline_text_fields_24"
+        android:title="font" />
 
 </menu>

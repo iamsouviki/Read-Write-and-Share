@@ -20,7 +20,10 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.File;
@@ -34,6 +37,7 @@ public class CreateNewFile extends AppCompatActivity {
 
     EditText body,filename;
     String content,FILE_NAME;
+    Spinner fileextension;
     String filecontent;
     File file,textFile;
 
@@ -44,6 +48,8 @@ public class CreateNewFile extends AppCompatActivity {
     ArrayList <String> textcontent = new ArrayList<String>() ;
 
     String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+    String Extn[] = {".txt",".c",".java",".cpp",".xml"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +69,11 @@ public class CreateNewFile extends AppCompatActivity {
 
         body = findViewById(R.id.filecontent);
         filename = dialogView.findViewById(R.id.filename);
+        fileextension = dialogView.findViewById(R.id.fileextension);
 
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,Extn);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        fileextension.setAdapter(aa);
 
         // For open file
         Intent intn = getIntent();
@@ -111,8 +121,18 @@ public class CreateNewFile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 content = body.getText().toString();
+                fileextension.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        k=i;
+                    }
 
-                FILE_NAME = filename.getText().toString();
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
+                FILE_NAME = filename.getText().toString()+Extn[k];
                 write();
             }
         });
