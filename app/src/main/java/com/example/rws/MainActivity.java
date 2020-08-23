@@ -16,7 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.synnapps.carouselview.CarouselView;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Read   Write  &  Share");
         requestPermissions(permissions,3);
+
 
 
         create = findViewById(R.id.createnewfile);
@@ -118,12 +121,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.firstmenu,menu);
+        MenuItem item = menu.findItem(R.id.switchtheme);
+        item.setActionView(R.layout.switch_item);
+
+        Switch myswitch = item.getActionView().findViewById(R.id.darktheme);
+        myswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    //
+                }
+            }
+        });
         return (true);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        finish();
+
         return super.onOptionsItemSelected(item);
     }
 

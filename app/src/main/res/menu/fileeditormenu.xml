@@ -24,9 +24,5 @@
         android:title="Zoom In"
         android:icon="@drawable/zoomin"
         />
-    <item
-        android:id="@+id/font"
-        android:icon="@drawable/ic_baseline_text_fields_24"
-        android:title="font" />
 
 </menu>
