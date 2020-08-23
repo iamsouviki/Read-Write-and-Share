@@ -5,15 +5,32 @@
     android:id="@+id/savedialogue"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/filename"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_gravity="center"
-        android:hint="Enter File Name"
-        android:text="Untitled.txt"
-        android:textAlignment="center" />
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/filename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:hint="Enter File Name"
+            android:text="Untitled"
+            android:textAlignment="center"
+            android:layout_weight="0.7"
+            android:layout_marginLeft="10dp"/>
+
+        <Spinner
+            android:id="@+id/fileextension"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.1"
+            android:entries="@array/extension"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
