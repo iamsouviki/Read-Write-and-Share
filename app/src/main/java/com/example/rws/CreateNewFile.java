@@ -123,12 +123,17 @@ public class CreateNewFile extends AppCompatActivity {
 
                 content = body.getText().toString();
 
-                fileextension.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        k=i;
-                    }
-                });
+               fileextension.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                   @Override
+                   public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                       k=i;
+                   }
+
+                   @Override
+                   public void onNothingSelected(AdapterView<?> adapterView) {
+
+                   }
+               });
 
                 FILE_NAME = filename.getText().toString()+Extn[k];
                 write();

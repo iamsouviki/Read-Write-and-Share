@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0.1"
-            android:entries="@array/extension"/>
+            />
     </LinearLayout>
 
     <LinearLayout
