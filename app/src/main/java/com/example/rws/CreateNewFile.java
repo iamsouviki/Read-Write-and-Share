@@ -20,10 +20,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.File;
@@ -36,7 +33,6 @@ import static com.example.rws.R.layout.savefiledialogue;
 public class CreateNewFile extends AppCompatActivity {
 
     EditText body,filename;
-    Spinner fileextension;
     String content,FILE_NAME;
     String filecontent;
     File file,textFile;
@@ -48,7 +44,6 @@ public class CreateNewFile extends AppCompatActivity {
     ArrayList <String> textcontent = new ArrayList<String>() ;
 
     String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    String Extn[]={".txt",".c",".cpp",".java",".xml"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +63,6 @@ public class CreateNewFile extends AppCompatActivity {
 
         body = findViewById(R.id.filecontent);
         filename = dialogView.findViewById(R.id.filename);
-        fileextension = dialogView.findViewById(R.id.fileextension);
-
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,Extn);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        fileextension.setAdapter(aa);
 
 
         // For open file
@@ -120,22 +110,9 @@ public class CreateNewFile extends AppCompatActivity {
                 new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 content = body.getText().toString();
 
-               fileextension.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                   @Override
-                   public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                       k=i;
-                   }
-
-                   @Override
-                   public void onNothingSelected(AdapterView<?> adapterView) {
-
-                   }
-               });
-
-                FILE_NAME = filename.getText().toString()+Extn[k];
+                FILE_NAME = filename.getText().toString();
                 write();
             }
         });
@@ -225,12 +202,10 @@ public class CreateNewFile extends AppCompatActivity {
                     mn++;
                 }
             case R.id.zoomintext:
-                if(size<39 && body.getText().toString()!="") {
-                    size = size + 2;
-                    body.setTextSize(size);
-                }
+                size = size+2;
+                body.setTextSize(size);
             case R.id.zoomout:
-                if(size>7 && body.getText().toString()!="") {
+                if(size>7) {
                     size = size - 2;
                     body.setTextSize(size - 2);
                 }
@@ -239,7 +214,6 @@ public class CreateNewFile extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public void onBackPressed() {
@@ -302,7 +276,7 @@ public class CreateNewFile extends AppCompatActivity {
         }else{
             if(!c.equals(b) && !textcontent.contains(b)){
                 textcontent.add(b);
-              // Toast.makeText(getApplicationContext(), textcontent.toString()+"", Toast.LENGTH_LONG).show();
+               Toast.makeText(getApplicationContext(), textcontent.toString()+"", Toast.LENGTH_LONG).show();
             }
         }
     }

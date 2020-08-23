@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item
+        android:id="@+id/app_bar_switch"
+        android:title="Dark"
+        app:actionLayout="@layout/switch_item"
+        app:showAsAction="always" />
+
     <item android:title="Exit"
         android:id="@+id/exit"
         android:icon="@drawable/ic_baseline_exit_to_app_24"
