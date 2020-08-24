@@ -3,6 +3,7 @@ package com.example.rws;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.Manifest;
 import android.content.Intent;
@@ -123,7 +124,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        finish();
+        switch (item.getItemId()){
+            case R.id.myswitch:
+                if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES){
+                    setTheme(R.style.darktheme);
+
+                }
+                else{
+                    setTheme(R.style.AppTheme);
+
+                }
+                break;
+
+
+        }
         return super.onOptionsItemSelected(item);
     }
 
