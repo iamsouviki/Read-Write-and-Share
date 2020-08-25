@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class Contact extends AppCompatActivity {
-    Button iti,souvik,sankar,moti,man;
+    Button iti,souvik,sankar,moti,man,dada;
     EditText ig;
 
 
@@ -26,6 +26,7 @@ public class Contact extends AppCompatActivity {
         moti=findViewById(R.id.moti);
         man=findViewById(R.id.man);
         ig=findViewById(R.id.editTextTextPersonName2);
+        dada=findViewById(R.id.gaganda);
 
         ig.setFocusable(false);
         Animation anim = new AlphaAnimation(1.0f,0.5f);
@@ -67,6 +68,12 @@ public class Contact extends AppCompatActivity {
             public void onClick(View view) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/soumen748/")));
 
+            }
+        });
+        dada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://www.instagram.com/tgagan.7/")));
             }
         });
     }

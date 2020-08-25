@@ -67,16 +67,16 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/note"
-                android:layout_width="wrap_content"
+                android:id="@+id/About"
+                android:layout_width="150dp"
                 android:layout_height="170dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:drawableTop="@drawable/ic_baseline_create_24"
                 android:stateListAnimator="@null"
-                android:text="NOTES" />
+                android:background="#FFFFFF"
+                android:drawableTop="@drawable/clock"
+                android:text="SERVICE" />
 
             <Button
                 android:id="@+id/sharefile"
@@ -91,23 +91,7 @@
                 android:text="Share A File" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_margin="15dp"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/About"
-                android:layout_width="150dp"
-                android:layout_height="170dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                android:stateListAnimator="@null"
-                android:background="#FFFFFF"
-                android:drawableTop="@drawable/clock"
-                android:text="SERVICE" />
-        </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>

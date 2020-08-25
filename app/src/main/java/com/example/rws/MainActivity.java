@@ -30,7 +30,7 @@ import java.io.FileReader;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button create,note,share,about,openfile;
+    Button create,share,about,openfile;
     int count;
     CarouselView carouselView;
     FileInputStream fileInputStream;
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         create = findViewById(R.id.createnewfile);
-        note = findViewById(R.id.note);
+
         share = findViewById(R.id.sharefile);
         about=findViewById(R.id.About);
         openfile=findViewById(R.id.opennewfile);
@@ -88,14 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        note.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, Note.class));
-                finish();
 
-            }
-        });
 
         share.setOnClickListener(new View.OnClickListener() {
             @Override

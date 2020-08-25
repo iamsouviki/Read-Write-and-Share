@@ -19,7 +19,6 @@
         android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NoteViewPage" />
         <activity android:name=".Contact" />
         <activity android:name=".TermsAndPolicy" />
         <activity android:name=".AappInfo" />
@@ -27,7 +26,6 @@
         <activity
             android:name=".ShareActivity"
             android:theme="@style/Theme.MaterialComponents.Light" />
-        <activity android:name=".Note" />
         <activity android:name=".CreateNewFile" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SplashScreen">
