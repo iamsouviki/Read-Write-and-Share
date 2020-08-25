@@ -234,6 +234,15 @@ public class CreateNewFile extends AppCompatActivity {
                     body.setTextSize(size - 2);
                 }
                 break;
+            case R.id.share:
+                Intent myIntent= new Intent(Intent.ACTION_SEND);
+                myIntent.setType("text/plain");
+                String sharebody="Your body here";
+                String sharesub="Your Subject here";
+                myIntent.putExtra(Intent.EXTRA_SUBJECT,sharesub);
+                myIntent.putExtra(Intent.EXTRA_TEXT,sharebody);
+                startActivity(Intent.createChooser(myIntent,"Share using"));
+
         }
 
 

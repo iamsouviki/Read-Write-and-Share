@@ -24,5 +24,10 @@
         android:title="Zoom In"
         android:icon="@drawable/zoomin"
         />
+    <item
+        android:id="@+id/share"
+        android:title="Share"
+        
+        />
 
 </menu>
