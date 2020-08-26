@@ -42,6 +42,8 @@ public class CreateNewFile extends AppCompatActivity {
     File file,textFile;
 
     int t=2,mn,k,size=14;
+
+
     AlertDialog alertDialog,alertDialog1,alert;
     boolean ch;
 
@@ -237,7 +239,7 @@ public class CreateNewFile extends AppCompatActivity {
             case R.id.share:
                 Intent myIntent= new Intent(Intent.ACTION_SEND);
                 myIntent.setType("text/plain");
-                String sharebody="Your body here";
+                String sharebody="ab";
                 String sharesub="Your Subject here";
                 myIntent.putExtra(Intent.EXTRA_SUBJECT,sharesub);
                 myIntent.putExtra(Intent.EXTRA_TEXT,sharebody);
@@ -310,7 +312,7 @@ public class CreateNewFile extends AppCompatActivity {
         }else{
             if(!c.equals(b) && !textcontent.contains(b)){
                 textcontent.add(b);
-               Toast.makeText(getApplicationContext(), textcontent.toString()+"", Toast.LENGTH_LONG).show();
+               //Toast.makeText(getApplicationContext(), textcontent.toString()+"", Toast.LENGTH_SHORT).show();
             }
         }
     }
