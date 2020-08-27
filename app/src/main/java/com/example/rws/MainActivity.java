@@ -2,10 +2,8 @@ package com.example.rws;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
 import android.content.Intent;
@@ -32,7 +30,7 @@ import java.io.FileReader;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button create,share,openfile;
+    Button create,share,about,openfile;
     int count;
     CarouselView carouselView;
     FileInputStream fileInputStream;
@@ -42,19 +40,11 @@ public class MainActivity extends AppCompatActivity {
     int[] sampleImages = {R.drawable.enjoy,R.drawable.viewimage1,R.drawable.viewimage2,R.drawable.viewimage3};
     ImageListener imageListener;
     String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    ActionBarDrawerToggle actionBarDrawerToggle;
-    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.drawer_open, R.string.drawer_close);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
 
         getSupportActionBar().setTitle("Read   Write  &  Share");
         requestPermissions(permissions,3);
@@ -63,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         create = findViewById(R.id.createnewfile);
 
         share = findViewById(R.id.sharefile);
-
         openfile=findViewById(R.id.opennewfile);
         carouselView = (CarouselView) findViewById(R.id.carouselView);
 
@@ -107,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-
 
     }
 

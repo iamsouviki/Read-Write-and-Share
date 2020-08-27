@@ -1,39 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="2dp"
+    android:orientation="vertical"
     android:background="#FFFFFF"
 
-    android:orientation="vertical"
+    android:layout_margin="2dp"
     tools:context=".MainActivity">
 
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <com.synnapps.carouselview.CarouselView
-            android:id="@+id/carouselView"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:fillColor="#FFFFFFFF"
-            app:pageColor="#00000000"
-            app:radius="6dp"
-            app:slideInterval="3000"
-            app:strokeColor="#FF777777"
-            app:strokeWidth="1dp"
-            tools:ignore="MissingClass" />
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_margin="15dp"
-            android:orientation="horizontal">
-
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+            <com.synnapps.carouselview.CarouselView
+                android:id="@+id/carouselView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:fillColor="#FFFFFFFF"
+                app:pageColor="#00000000"
+                app:radius="6dp"
+                app:slideInterval="3000"
+                app:strokeColor="#FF777777"
+                app:strokeWidth="1dp"
+                tools:ignore="MissingClass" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_margin="15dp"
+        android:orientation="horizontal">
             <Button
                 android:id="@+id/createnewfile"
                 android:layout_width="wrap_content"
@@ -42,8 +44,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
-                android:drawableTop="@drawable/ic_baseline_note_24"
                 android:stateListAnimator="@null"
+                android:drawableTop="@drawable/ic_baseline_note_24"
                 android:text="Create a new file" />
 
             <Button
@@ -55,10 +57,9 @@
                 android:layout_weight="1"
                 android:background="#FFFFFF"
                 android:drawableTop="@drawable/ic_baseline_folder_open_24"
-                android:stateListAnimator="@null"
-                android:text="Open an Existed file" />
-        </LinearLayout>
-
+                android:text="Open an Existed file"
+                android:stateListAnimator="@null"/>
+    </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="220dp"
@@ -73,40 +74,15 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
+                android:stateListAnimator="@null"
                 android:background="#FFFFFF"
                 android:drawableTop="@drawable/ic_baseline_share_24"
-                android:stateListAnimator="@null"
                 android:text="Share A File" />
-
-            <Button
-                android:id="@+id/About"
-                android:layout_width="150dp"
-                android:layout_height="170dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:drawableTop="@drawable/clock"
-                android:stateListAnimator="@null"
-                android:text="SERVICE" />
 
         </LinearLayout>
 
 
-    </LinearLayout>
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigationView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            app:menu="@menu/service_menu_nev" />
-
-    </androidx.drawerlayout.widget.DrawerLayout>
-</RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
