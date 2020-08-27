@@ -78,6 +78,17 @@
                 android:background="#FFFFFF"
                 android:drawableTop="@drawable/ic_baseline_share_24"
                 android:text="Share A File" />
+            <Button
+                android:id="@+id/About"
+                android:layout_width="150dp"
+                android:layout_height="170dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:stateListAnimator="@null"
+                android:background="#FFFFFF"
+                android:drawableTop="@drawable/clock"
+                android:text="SERVICE" />
 
         </LinearLayout>
 
@@ -100,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            app:menu="@menu/left_navigation_menu" />
+            app:menu="@menu/service_menu_nev" />
 
     </androidx.drawerlayout.widget.DrawerLayout>
 </LinearLayout>
