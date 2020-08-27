@@ -215,7 +215,7 @@ public class CreateNewFile extends AppCompatActivity {
                     body.setText(textcontent.get(mn));
                     t++;
                 }else{
-                        Toast.makeText(getApplicationContext(), "Nothing to Undo", Toast.LENGTH_SHORT).show();
+
 
                 }
                 break;
