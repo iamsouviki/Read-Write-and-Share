@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         create = findViewById(R.id.createnewfile);
 
         share = findViewById(R.id.sharefile);
+
+        about=findViewById(R.id.About);
+
         openfile=findViewById(R.id.opennewfile);
         carouselView = (CarouselView) findViewById(R.id.carouselView);
 
@@ -94,6 +97,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this,ShareActivity.class));
                 finish();
+            }
+        });
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,AboutActivity.class));
+
+
             }
         });
 
