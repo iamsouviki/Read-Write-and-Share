@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
@@ -44,9 +45,13 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
             // Call WifiP2pManager.requestPeers() to get a list of current peers
             if (manager != null) {
                 if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    Log.e("Wifi Error","Permission PeerNOt available");
                     return;
                 }
                 manager.requestPeers(channel, activity.peerListListener);
+            }
+            else{
+                Log.e("Wifi Error","Manager is Null");
             }
         } else if (WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION.equals(action)) {
             // Respond to new connection or disconnections

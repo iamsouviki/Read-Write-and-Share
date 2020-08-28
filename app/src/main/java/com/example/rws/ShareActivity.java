@@ -22,6 +22,7 @@ import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -208,11 +209,13 @@ public class ShareActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 root.removeAllViews();
-                File root1 = new File(Environment.getExternalStorageDirectory().getName());
+                Log.e("File sd",Environment.getExternalStorageDirectory().getName());
+                File root1 = new File(Environment.getExternalStorageDirectory(),"");
                 View folderview = LayoutInflater.from(ShareActivity.this).inflate(R.layout.showallfiles,null);
                 folders = folderview.findViewById(R.id.folderGridView);
-                //FileAdaptar fileAdaptar = new FileAdaptar(ShareActivity.this,root1);
-                //folders.setAdapter(fileAdaptar);
+
+                FileAdaptar fileAdaptar = new FileAdaptar(ShareActivity.this,root1);
+                folders.setAdapter(fileAdaptar);
                 root.addView(folderview);
             }
         });
