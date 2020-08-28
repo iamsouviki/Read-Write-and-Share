@@ -30,7 +30,7 @@ import java.io.FileReader;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button create,share,about,openfile;
+    Button create,share,openfile;
     int count;
     CarouselView carouselView;
     FileInputStream fileInputStream;
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         share = findViewById(R.id.sharefile);
 
-        about=findViewById(R.id.About);
+
 
         openfile=findViewById(R.id.opennewfile);
         carouselView = (CarouselView) findViewById(R.id.carouselView);
@@ -99,42 +99,8 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-        about.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,AboutActivity.class));
 
 
-            }
-        });
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.firstmenu,menu);
-        return (true);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.myswitch:
-                if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES){
-                    setTheme(R.style.darktheme);
-
-                }
-                else{
-                    setTheme(R.style.AppTheme);
-
-                }
-                break;
-            case R.id.exit:
-                finish();
-
-
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
