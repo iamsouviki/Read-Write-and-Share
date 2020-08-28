@@ -104,33 +104,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.firstmenu,menu);
-        return (true);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.myswitch:
-                if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES){
-                    setTheme(R.style.darktheme);
-
-                }
-                else{
-                    setTheme(R.style.AppTheme);
-
-                }
-                break;
-            case R.id.exit:
-                finish();
-
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onBackPressed() {
         new Handler().postDelayed(new Runnable() {
             @Override
