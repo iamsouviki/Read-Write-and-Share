@@ -3,7 +3,6 @@ package com.example.rws;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import android.Manifest;
 import android.content.Intent;
@@ -13,8 +12,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.DocumentsContract;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,7 +22,6 @@ import com.synnapps.carouselview.ImageListener;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,9 +29,7 @@ public class MainActivity extends AppCompatActivity {
     Button create,share,openfile;
     int count;
     CarouselView carouselView;
-    FileInputStream fileInputStream;
-    String fileContent,actualfilepath,filename;
-    File file;
+    String actualfilepath,filename;
 
     int[] sampleImages = {R.drawable.enjoy,R.drawable.viewimage1,R.drawable.viewimage2,R.drawable.viewimage3};
     ImageListener imageListener;
@@ -45,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-        Toast.makeText(getApplicationContext(), "master", Toast.LENGTH_LONG).show();
         getSupportActionBar().setTitle("Read   Write  &  Share");
         requestPermissions(permissions,3);
 
