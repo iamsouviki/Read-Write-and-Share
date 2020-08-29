@@ -86,4 +86,19 @@
 
         </LinearLayout>
     </ScrollView>
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/drawer_layout"
+        android:fitsSystemWindows="true"
+        tools:context=".Home">
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigationView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/sidenev" />
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 </RelativeLayout>

@@ -2,7 +2,9 @@ package com.example.rws;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
 import android.content.Intent;
@@ -12,11 +14,15 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.DocumentsContract;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
@@ -30,7 +36,9 @@ public class MainActivity extends AppCompatActivity {
     int count;
     CarouselView carouselView;
     String actualfilepath,filename;
-
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    DrawerLayout drawerLayout;
+    Animation rotateForward,rotateBackward;
     int[] sampleImages = {R.drawable.enjoy,R.drawable.viewimage1,R.drawable.viewimage2,R.drawable.viewimage3};
     ImageListener imageListener;
     String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -46,6 +54,33 @@ public class MainActivity extends AppCompatActivity {
         create = findViewById(R.id.createnewfile);
 
         share = findViewById(R.id.sharefile);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.drawer_open, R.string.drawer_close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        rotateForward = AnimationUtils.loadAnimation(this,R.anim.rotate_forward);
+        rotateBackward = AnimationUtils.loadAnimation(this,R.anim.rotate_bacward);
+
+        NavigationView navigationView = findViewById(R.id.navigationView);
+        View view = navigationView.inflateHeaderView(R.layout.navigation_header);
+        navigationView.setItemIconTintList(null);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                UserItemSelected(item);
+                return false;
+            }
+
+
+            private void UserItemSelected(MenuItem item) {
+                switch (item.getItemId()) {
+
+                }
+
+            }
+        });
 
 
 
