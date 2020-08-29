@@ -50,22 +50,11 @@ import static com.example.rws.R.layout.savefiledialogue;
 public class ShareActivity extends AppCompatActivity {
     AlertDialog alertDialog;
     Button sendfile, recievefile, showpic, showvideos, showapps, showmusic,showfiles;
-    WifiManager wifiManager;
     GridView pictures, videos, music, apps,folders;
     ViewGroup root;
     ImageAdaptar imageAdaptar;
     AppAdaptar appAdaptar;
-    WifiP2pManager manager;
-    WifiP2pManager.Channel channel;
-    BroadcastReceiver receiver;
-    IntentFilter intentFilter;
-    private List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();
-    String[] DeviceNamearray;
-    WifiP2pDevice[] Devicearray;
-    WifiP2pManager.PeerListListener peerListListener;
     String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
-    ListView mobilelist;
-    AlertDialog alertDialog1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,56 +63,6 @@ public class ShareActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Share");
         requestPermissions(permissions,5);
-
-
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        LayoutInflater inf = this.getLayoutInflater();
-
-        final View dialogView = inf.inflate(R.layout.mobilelist,null);
-
-        builder1.setView(dialogView);
-        builder1.setCancelable(true);
-        alertDialog1 = builder1.create();
-        mobilelist = dialogView.findViewById(R.id.mobilelistview);
-
-        manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
-        channel = manager.initialize(this, getMainLooper(), null);
-        receiver = new WiFiDirectBroadcastReceiver(manager, channel, this);
-        intentFilter = new IntentFilter();
-        intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
-        intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
-        intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
-        intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
-
-        peerListListener = new WifiP2pManager.PeerListListener() {
-            @Override
-            public void onPeersAvailable(WifiP2pDeviceList peerList) {
-
-                List<WifiP2pDevice> refreshedPeers = (List<WifiP2pDevice>) peerList.getDeviceList();
-                if (!refreshedPeers.equals(peers)) {
-                    peers.clear();
-                    peers.addAll(refreshedPeers);
-                    DeviceNamearray = new String[peerList.getDeviceList().size()];
-                    Devicearray = new WifiP2pDevice[peerList.getDeviceList().size()];
-                }
-                int index =0;
-
-                for (WifiP2pDevice device : peerList.getDeviceList()) {
-                    DeviceNamearray[index]=device.deviceName;
-                    Devicearray[index]=device;
-                    index++;
-                }
-
-                ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_2,DeviceNamearray);
-                mobilelist.setAdapter(adapter);
-
-
-                if (peers.size() == 0) {
-                    Toast.makeText(getApplicationContext(), "No device found", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-            }
-        };
 
 
         sendfile = findViewById(R.id.send);
@@ -144,7 +83,6 @@ public class ShareActivity extends AppCompatActivity {
         videos.setAdapter(appAdaptar);
         root.addView(appview);
 
-        wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -239,26 +177,6 @@ public class ShareActivity extends AppCompatActivity {
         sendfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!wifiManager.isWifiEnabled()) {
-                    wifiManager.setWifiEnabled(true);
-                }
-
-                alertDialog1.show();
-                alertDialog1.setCancelable(true);
-                if (ActivityCompat.checkSelfPermission(ShareActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
-                    @Override
-                    public void onSuccess() {
-                        Toast.makeText(getApplicationContext(), "Discovering Started", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onFailure(int reasonCode) {
-                        Toast.makeText(getApplicationContext(), "Failed to Start Discovering", Toast.LENGTH_SHORT).show();
-                    }
-                });
 
             }
         });
@@ -267,21 +185,7 @@ public class ShareActivity extends AppCompatActivity {
         recievefile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ActivityCompat.checkSelfPermission(ShareActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(ShareActivity.this, "Give Permission", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
-                    @Override
-                    public void onSuccess() {
-                        Toast.makeText(getApplicationContext(), "Discovering Started", Toast.LENGTH_SHORT).show();
-                    }
 
-                    @Override
-                    public void onFailure(int reasonCode) {
-                        Toast.makeText(getApplicationContext(), "Failed to Start Discovering", Toast.LENGTH_SHORT).show();
-                    }
-                });
             }
         });
 
@@ -301,35 +205,6 @@ public class ShareActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         alertDialog.show();
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.share_manu,menu);
-        return (true);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.app_bar_search:
-                break;
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    /* register the broadcast receiver with the intent values to be matched */
-    @Override
-    protected void onResume() {
-        super.onResume();
-        registerReceiver(receiver, intentFilter);
-    }
-    /* unregister the broadcast receiver */
-    @Override
-    protected void onPause() {
-        super.onPause();
-        unregisterReceiver(receiver);
     }
 
 
