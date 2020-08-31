@@ -10,7 +10,6 @@
     android:layout_margin="2dp"
     tools:context=".MainActivity">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -79,11 +78,11 @@
                 android:drawableTop="@drawable/ic_baseline_share_24"
                 android:text="Share A File" />
 
+        </LinearLayout>
 
         </LinearLayout>
 
-
-
-        </LinearLayout>
     </ScrollView>
+
+
 </RelativeLayout>
