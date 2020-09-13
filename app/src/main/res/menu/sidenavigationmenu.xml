@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="Settings"
+        android:id="@+id/settings"
+        app:showAsAction="withText"
+        />
+    <item android:title="Feedback"
+        android:id="@+id/feedback"
+        app:showAsAction="withText"/>
+    <item android:title="About"
+        android:id="@+id/aboutapp"
+        app:showAsAction="withText"/>
+    <item android:title="Credits"
+        android:id="@+id/credit"
+        app:showAsAction="withText"
+        />
+    <item android:title="Privacy Policy"
+        android:id="@+id/privacypolicies"
+        app:showAsAction="withText"/>
+
+</menu>
