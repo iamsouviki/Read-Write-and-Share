@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/about"
+        android:icon="@drawable/ic_baseline_group_24"
+        android:title="About Us" />
+    <item
+        android:id="@+id/terms"
+        android:icon="@drawable/ic_baseline_assignment_24"
+        android:title="Terms" />
+    <item
+        android:id="@+id/share"
+        android:icon="@drawable/share"
+        android:title="Share App" />
+    <item
+        android:id="@+id/appabout"
+        android:icon="@drawable/ic_baseline_info_24"
+        android:title="About App" />
+    <item
+        android:id="@+id/exit"
+        android:icon="@drawable/close"
+        android:title="Exit" />
+</menu>
