@@ -2,22 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="Settings"
+    <item
         android:id="@+id/settings"
-        app:showAsAction="withText"
-        />
-    <item android:title="Feedback"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="Settings"
+        app:showAsAction="withText" />
+    <item
         android:id="@+id/feedback"
-        app:showAsAction="withText"/>
-    <item android:title="About"
+        android:icon="@drawable/ic_baseline_group_24"
+        android:title="Feedback"
+        app:showAsAction="withText" />
+    <item
         android:id="@+id/aboutapp"
-        app:showAsAction="withText"/>
-    <item android:title="Credits"
+        android:icon="@drawable/ic_baseline_info_24"
+        android:title="About"
+        app:showAsAction="withText" />
+    <item
         android:id="@+id/credit"
-        app:showAsAction="withText"
-        />
-    <item android:title="Privacy Policy"
+        android:icon="@drawable/ic_baseline_adb_24"
+        android:title="Credits"
+        app:showAsAction="withText" />
+    <item
         android:id="@+id/privacypolicies"
-        app:showAsAction="withText"/>
+        android:icon="@drawable/ic_baseline_assignment_24"
+        android:title="Privacy Policy"
+        app:showAsAction="withText" />
 
 </menu>
