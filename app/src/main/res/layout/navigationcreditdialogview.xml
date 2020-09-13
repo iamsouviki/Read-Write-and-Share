@@ -50,7 +50,7 @@
         android:textColor="#296ED6"
         android:textStyle="italic"/>
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textVie5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="\n                        Soumen Pal \n    Email id: palsoumen306@gmail.com \n                  Phone: +91 9679833243\n"
