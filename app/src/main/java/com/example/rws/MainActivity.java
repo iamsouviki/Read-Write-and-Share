@@ -2,9 +2,13 @@ package com.example.rws;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -12,17 +16,27 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.DocumentsContract;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
+
+import org.xmlpull.v1.XmlPullParser;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+
+import static com.example.rws.R.layout.about;
+import static com.example.rws.R.layout.navigationcreditdialogview;
+import static com.example.rws.R.layout.privacypolicies;
+import static com.example.rws.R.layout.savefiledialogue;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     int count;
     CarouselView carouselView;
     String actualfilepath,filename;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    AlertDialog creditdialog,privacydialog,aboutappdialog;
 
     int[] sampleImages = {R.drawable.enjoy,R.drawable.viewimage1,R.drawable.viewimage2,R.drawable.viewimage3};
     ImageListener imageListener;
@@ -41,6 +58,85 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
         getSupportActionBar().setTitle("Read   Write  &  Share");
         requestPermissions(permissions,3);
+
+        //creditdialogview
+        AlertDialog.Builder creditbuilder = new AlertDialog.Builder(MainActivity.this);
+        LayoutInflater inf = this.getLayoutInflater();
+        final View dialogView = inf.inflate(navigationcreditdialogview,null);
+        creditbuilder.setView(dialogView);
+        creditbuilder.setCancelable(true);
+        creditdialog = creditbuilder.create();
+
+        //privacydialogview
+        AlertDialog.Builder privacybuilder = new AlertDialog.Builder(MainActivity.this);
+        LayoutInflater infp = this.getLayoutInflater();
+        final View privacydialogView = infp.inflate(privacypolicies,null);
+        privacybuilder.setView(privacydialogView);
+        privacydialog = privacybuilder.create();
+
+        //aboutappdialogview
+        AlertDialog.Builder aboutbuilder = new AlertDialog.Builder(MainActivity.this);
+        LayoutInflater infab = this.getLayoutInflater();
+        final View aboutdialogView = infab.inflate(about,null);
+        aboutbuilder.setView(aboutdialogView);
+        aboutappdialog = aboutbuilder.create();
+
+        //drawer layout
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(MainActivity.this,drawerLayout,R.string.drawer_open,R.string.drawer_close);
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        NavigationView navigationView = findViewById(R.id.navigationviewside);
+       View view = navigationView.inflateHeaderView(R.layout.sidenavigationicon);
+        navigationView.setItemIconTintList(null);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                UserItemSelected(item);
+                return false;
+            }
+
+
+            private void UserItemSelected(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.credit:
+                        creditdialog.setButton(AlertDialog.BUTTON_NEUTRAL,"Close", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                creditdialog.dismiss();
+                            }
+                        });
+                        creditdialog.show();
+                        creditdialog.setCancelable(false);
+                        break;
+                    case R.id.privacypolicies:
+                        privacydialog.setButton(AlertDialog.BUTTON_NEUTRAL,"Close", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                privacydialog.dismiss();
+                            }
+                        });
+                        privacydialog.show();
+                        privacydialog.setCancelable(false);
+                        break;
+                    case R.id.aboutapp:
+                        aboutappdialog.setButton(AlertDialog.BUTTON_NEUTRAL,"Close", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                aboutappdialog.dismiss();
+                            }
+                        });
+                        aboutappdialog.show();
+                        aboutappdialog.setCancelable(false);
+                        break;
+
+
+                }
+
+            }
+        });
 
 
         create = findViewById(R.id.createnewfile);
