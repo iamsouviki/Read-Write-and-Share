@@ -39,6 +39,7 @@ import static com.example.rws.R.layout.feedback;
 import static com.example.rws.R.layout.navigationcreditdialogview;
 import static com.example.rws.R.layout.privacypolicies;
 import static com.example.rws.R.layout.savefiledialogue;
+import static com.example.rws.R.layout.settingdialog;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,11 +49,11 @@ public class MainActivity extends AppCompatActivity {
     String actualfilepath,filename;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
-    AlertDialog creditdialog,privacydialog,aboutappdialog,feedbackdialog;
+    AlertDialog creditdialog,privacydialog,aboutappdialog,feedbackdialog,settingsdialoge;
     int[] sampleImages = {R.drawable.enjoy,R.drawable.viewimage1,R.drawable.viewimage2,R.drawable.viewimage3};
     ImageListener imageListener;
     String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    Button sendfeedback;
+    Button sendfeedback,cleardata;
     EditText feedbackmessage;
 
     @Override
@@ -61,6 +62,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
         getSupportActionBar().setTitle("Read   Write  &  Share");
         requestPermissions(permissions,3);
+
+        //settingdialogview
+        AlertDialog.Builder settingbuilder = new AlertDialog.Builder(MainActivity.this);
+        final LayoutInflater infset = this.getLayoutInflater();
+        final View settingdialogView = infset.inflate(settingdialog,null);
+        settingbuilder.setView(settingdialogView);
+        settingbuilder.setCancelable(true);
+        settingsdialoge = settingbuilder.create();
+        cleardata=settingdialogView.findViewById(R.id.clearalldata);
+        cleardata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                   Runtime runtime = Runtime.getRuntime();
+                   runtime.exec("pm clear YOUR_APP_PACKAGE_GOES HERE");
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
 
         //creditdialogview
         AlertDialog.Builder creditbuilder = new AlertDialog.Builder(MainActivity.this);
@@ -166,6 +188,16 @@ public class MainActivity extends AppCompatActivity {
                         });
                         feedbackdialog.show();
                         feedbackdialog.setCancelable(false);
+                        break;
+                    case R.id.settings:
+                        settingsdialoge.setButton(AlertDialog.BUTTON_NEUTRAL, "Close", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                settingsdialoge.dismiss();
+                            }
+                        });
+                        settingsdialoge.show();
+                        settingsdialoge.setCancelable(false);
                         break;
                 }
 
