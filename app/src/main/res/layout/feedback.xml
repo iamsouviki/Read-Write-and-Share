@@ -29,10 +29,12 @@
         android:background="@drawable/backgroundedittext">
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/feedbackmessage"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_margin="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="7dp"
             android:ems="10"
             android:textAlignment="textStart"
             />

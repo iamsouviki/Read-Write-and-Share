@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     int[] sampleImages = {R.drawable.enjoy,R.drawable.viewimage1,R.drawable.viewimage2,R.drawable.viewimage3};
     ImageListener imageListener;
     String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    Button sendfeedback;
+    EditText feedbackmessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         //creditdialogview
         AlertDialog.Builder creditbuilder = new AlertDialog.Builder(MainActivity.this);
-        LayoutInflater inf = this.getLayoutInflater();
+        final LayoutInflater inf = this.getLayoutInflater();
         final View dialogView = inf.inflate(navigationcreditdialogview,null);
         creditbuilder.setView(dialogView);
         creditbuilder.setCancelable(true);
@@ -89,6 +92,23 @@ public class MainActivity extends AppCompatActivity {
         feedbackbuilder.setView(feedbackdialogView);
         feedbackbuilder.setCancelable(true);
         feedbackdialog = feedbackbuilder.create();
+        sendfeedback=feedbackdialogView.findViewById(R.id.sendfeedback);
+        feedbackmessage=feedbackdialogView.findViewById(R.id.feedbackmessage);
+        sendfeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String fmessage=feedbackmessage.getText().toString();
+               Uri uri = Uri.parse("smsto:"+"+917001178718");
+               Intent intent = new Intent(Intent.ACTION_SENDTO,uri);
+                String sharesub="Text";
+                intent.putExtra(Intent.EXTRA_SUBJECT,sharesub);
+               intent.putExtra(Intent.EXTRA_TEXT,fmessage);
+               intent.setPackage("com.whatsapp");
+               feedbackmessage.setText("");
+               feedbackdialog.dismiss();
+               startActivity(intent);
+            }
+        });
 
         //drawer layout
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
