@@ -77,9 +77,11 @@ public class MainActivity extends AppCompatActivity {
                 try{
                    Runtime runtime = Runtime.getRuntime();
                    runtime.exec("pm clear YOUR_APP_PACKAGE_GOES HERE");
+                    Toast.makeText(getApplicationContext(), "all data cleared", Toast.LENGTH_LONG).show();
                 }
                 catch (Exception e){
                     e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "failed to clear data", Toast.LENGTH_SHORT).show();
                 }
             }
         });
