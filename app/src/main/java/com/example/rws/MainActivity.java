@@ -28,8 +28,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
-import org.xmlpull.v1.XmlPullParser;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -38,7 +36,6 @@ import static com.example.rws.R.layout.about;
 import static com.example.rws.R.layout.feedback;
 import static com.example.rws.R.layout.navigationcreditdialogview;
 import static com.example.rws.R.layout.privacypolicies;
-import static com.example.rws.R.layout.savefiledialogue;
 import static com.example.rws.R.layout.settingdialog;
 
 public class MainActivity extends AppCompatActivity {
@@ -59,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("Read   Write  &  Share");
         requestPermissions(permissions,3);
 

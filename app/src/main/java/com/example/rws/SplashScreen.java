@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class SplashScreen extends AppCompatActivity {
     ImageView ig;
@@ -16,7 +15,7 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.splashscreen);
         getSupportActionBar().hide();
 
         //set animation in splashscreen
