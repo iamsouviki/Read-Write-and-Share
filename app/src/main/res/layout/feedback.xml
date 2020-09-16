@@ -47,8 +47,8 @@
         android:layout_gravity="right"
         android:layout_margin="10dp"
         android:textAllCaps="false"
-        android:drawableTop="@drawable/share"
-        android:text="send"
+        android:backgroundTint="@color/Transparent"
+        android:text="Send"
         android:textColor="#38A3D3"
         />
 

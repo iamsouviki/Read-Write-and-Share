@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
@@ -255,20 +256,25 @@ public class MainActivity extends AppCompatActivity {
     //double back press back create
     @Override
     public void onBackPressed() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                count = 0;
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    count = 0;
+                }
+            },1500);
+
+            count ++;
+
+            if(count > 1){
+                finish();
+                return;
             }
-        },1500);
+            Toast.makeText(getApplicationContext(), "Back Press Again to Exit", Toast.LENGTH_SHORT).show();
 
-        count ++;
-
-        if(count > 1){
-            finish();
-            return;
         }
-        Toast.makeText(getApplicationContext(), "Back Press Again to Exit", Toast.LENGTH_SHORT).show();
     }
 
 
