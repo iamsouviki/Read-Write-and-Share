@@ -34,6 +34,7 @@ import java.io.File;
 import java.io.FileReader;
 
 import static com.example.rws.R.layout.about;
+import static com.example.rws.R.layout.feedback;
 import static com.example.rws.R.layout.navigationcreditdialogview;
 import static com.example.rws.R.layout.privacypolicies;
 import static com.example.rws.R.layout.savefiledialogue;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     String actualfilepath,filename;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
-    AlertDialog creditdialog,privacydialog,aboutappdialog;
+    AlertDialog creditdialog,privacydialog,aboutappdialog,feedbackdialog;
 
     int[] sampleImages = {R.drawable.enjoy,R.drawable.viewimage1,R.drawable.viewimage2,R.drawable.viewimage3};
     ImageListener imageListener;
@@ -80,6 +81,14 @@ public class MainActivity extends AppCompatActivity {
         final View aboutdialogView = infab.inflate(about,null);
         aboutbuilder.setView(aboutdialogView);
         aboutappdialog = aboutbuilder.create();
+
+        //feedbackdialogview
+        AlertDialog.Builder feedbackbuilder = new AlertDialog.Builder(MainActivity.this);
+        LayoutInflater inffed = this.getLayoutInflater();
+        final View feedbackdialogView = inffed.inflate(feedback,null);
+        feedbackbuilder.setView(feedbackdialogView);
+        feedbackbuilder.setCancelable(true);
+        feedbackdialog = feedbackbuilder.create();
 
         //drawer layout
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -131,7 +140,16 @@ public class MainActivity extends AppCompatActivity {
                         aboutappdialog.show();
                         aboutappdialog.setCancelable(false);
                         break;
-
+                    case R.id.feedback:
+                        feedbackdialog.setButton(AlertDialog.BUTTON_NEUTRAL,"Close", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                feedbackdialog.dismiss();
+                            }
+                        });
+                        feedbackdialog.show();
+                        feedbackdialog.setCancelable(false);
+                        break;
 
                 }
 
