@@ -18,7 +18,8 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
-        
+
+        //set animation in splashscreen
         ig=findViewById(R.id.ig);
         Animation anim = new AlphaAnimation(1.0f,0.5f);
         anim.setDuration(700);
@@ -26,6 +27,7 @@ public class SplashScreen extends AppCompatActivity {
         anim.setRepeatMode(Animation.REVERSE);
         ig.startAnimation(anim);
 
+        //splashscreen create
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     AlertDialog creditdialog,privacydialog,aboutappdialog,feedbackdialog;
-
     int[] sampleImages = {R.drawable.enjoy,R.drawable.viewimage1,R.drawable.viewimage2,R.drawable.viewimage3};
     ImageListener imageListener;
     String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -126,8 +125,6 @@ public class MainActivity extends AppCompatActivity {
                 UserItemSelected(item);
                 return false;
             }
-
-
             private void UserItemSelected(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.credit:
@@ -170,23 +167,18 @@ public class MainActivity extends AppCompatActivity {
                         feedbackdialog.show();
                         feedbackdialog.setCancelable(false);
                         break;
-
                 }
 
             }
         });
 
-
+        //initialize items
         create = findViewById(R.id.createnewfile);
-
         share = findViewById(R.id.sharefile);
-
-
-
         openfile=findViewById(R.id.opennewfile);
         carouselView = (CarouselView) findViewById(R.id.carouselView);
 
-
+        //carouseview
         carouselView.setPageCount(sampleImages.length);
         imageListener = new ImageListener() {
             @Override
@@ -196,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
         };
         carouselView.setImageListener(imageListener);
 
+        //createbutton listener
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -205,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //openfile button listener
         openfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -215,10 +209,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
+        //share button listener
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -230,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //double back press back create
     @Override
     public void onBackPressed() {
         new Handler().postDelayed(new Runnable() {
@@ -249,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    //permission check
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -261,6 +253,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    //after selecting file via intent
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -296,6 +290,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    //read a file
     public void readfile(){
         File file = new File(actualfilepath, filename);
         StringBuilder builder = new StringBuilder();
@@ -322,8 +318,5 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intn);
 
     }
-
-
-
 
 }

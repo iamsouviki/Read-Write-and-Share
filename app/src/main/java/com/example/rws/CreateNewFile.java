@@ -148,6 +148,7 @@ public class CreateNewFile extends AppCompatActivity {
     }
 
 
+    //write a file to storage
     private void write() {
         try {
             textFile = new File(file,FILE_NAME);
@@ -193,12 +194,14 @@ public class CreateNewFile extends AppCompatActivity {
 
     }
 
+    //creating option menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.fileeditormenu,menu);
         return (true);
     }
 
+    //option menu items
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
@@ -244,19 +247,19 @@ public class CreateNewFile extends AppCompatActivity {
                 myIntent.putExtra(Intent.EXTRA_SUBJECT,sharesub);
                 myIntent.putExtra(Intent.EXTRA_TEXT,sharebody);
                 startActivity(Intent.createChooser(myIntent,"Share using"));
-
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 
+    //backpress
     @Override
     public void onBackPressed() {
         alertDialog.show();
 
     }
 
+
+    //check the file present on the device or not
     public boolean prepAlert(){
         AlertDialog.Builder build = new AlertDialog.Builder(this);
         build.setTitle("Duplicate File Name");
@@ -284,6 +287,7 @@ public class CreateNewFile extends AppCompatActivity {
         return ch;
     }
 
+    //check permissions
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -298,6 +302,7 @@ public class CreateNewFile extends AppCompatActivity {
         }
     }
 
+    //undo function
     void undo(){
         String b = body.getText().toString();
         String c;
@@ -308,11 +313,9 @@ public class CreateNewFile extends AppCompatActivity {
         }
         if(textcontent.size()==0 ){
             textcontent.add("");
-            //Toast.makeText(getApplicationContext(), "Running", Toast.LENGTH_LONG).show();
         }else{
             if(!c.equals(b) && !textcontent.contains(b)){
                 textcontent.add(b);
-               //Toast.makeText(getApplicationContext(), textcontent.toString()+"", Toast.LENGTH_SHORT).show();
             }
         }
     }
