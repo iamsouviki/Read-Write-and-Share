@@ -59,5 +59,15 @@
         android:layout_margin="10dp"
         android:textColor="#296ED6"
         android:textStyle="italic"/>
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="\n                        Souvik Ghosh \n    Email id: souvikvk18@gmail.com \n                  Phone: +91 8637807535\n"
+        android:background="@drawable/backgroundedittext"
+        android:textSize="21dp"
+        android:layout_margin="10dp"
+        android:textColor="#296ED6"
+        android:textStyle="italic"/>
 
 </LinearLayout>
