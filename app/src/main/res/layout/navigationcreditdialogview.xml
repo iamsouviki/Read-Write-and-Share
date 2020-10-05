@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:text="\n                        Souvik Ghosh \n    Email id: souvikghosh687@gmail.com \n                  Phone: +91 7001178718\n"
         android:background="@drawable/backgroundedittext"
-        android:textSize="21dp"
+        android:textSize="18dp"
         android:layout_margin="10dp"
         android:textColor="#296ED6"
         android:textStyle="italic"/>
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:text="\n                        Soumen Pal \n    Email id: palsoumen306@gmail.com \n                  Phone: +91 9679833243\n"
         android:background="@drawable/backgroundedittext"
-        android:textSize="21dp"
+        android:textSize="18dp"
         android:layout_margin="10dp"
         android:textColor="#296ED6"
         android:textStyle="italic"/>
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:text="\n                        Souvik Ghosh \n    Email id: souvikvk18@gmail.com \n                  Phone: +91 8637807535\n"
         android:background="@drawable/backgroundedittext"
-        android:textSize="21dp"
+        android:textSize="18dp"
         android:layout_margin="10dp"
         android:textColor="#296ED6"
         android:textStyle="italic"/>
