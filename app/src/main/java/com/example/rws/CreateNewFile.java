@@ -225,7 +225,7 @@ public class CreateNewFile extends AppCompatActivity {
             case R.id.redofile:
                 if(textcontent.size()>1 && mn+1<textcontent.size()){
                    body.setText(textcontent.get(mn+1));
-                    Toast.makeText(getApplicationContext(), textcontent.get(mn+1)+" "+mn, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), textcontent.get(mn+1)+" "+mn, Toast.LENGTH_SHORT).show();
                     mn++;
                 }
                 break;
