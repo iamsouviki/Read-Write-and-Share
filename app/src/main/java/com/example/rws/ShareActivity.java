@@ -37,6 +37,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import org.xmlpull.v1.XmlPullParser;
 
@@ -55,6 +56,8 @@ public class ShareActivity extends AppCompatActivity {
     ImageAdaptar imageAdaptar;
     AppAdaptar appAdaptar;
     String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
+    ExtendedFloatingActionButton send,recieve;
+    WifiManager wifiManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +67,11 @@ public class ShareActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Share");
         requestPermissions(permissions,5);
 
+        wifiManager= (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
 
-        sendfile = findViewById(R.id.send);
-        recievefile = findViewById(R.id.recieve);
+
+        send = findViewById(R.id.send);
+        recieve = findViewById(R.id.recieve);
         showpic = findViewById(R.id.showpics);
         showvideos = findViewById(R.id.showvideos);
         showapps = findViewById(R.id.showapps);
@@ -174,18 +179,19 @@ public class ShareActivity extends AppCompatActivity {
             }
         });
 
-        sendfile.setOnClickListener(new View.OnClickListener() {
+        send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(ShareActivity.this,WifiDirectActivity.class));
+                
             }
         });
 
 
-        recievefile.setOnClickListener(new View.OnClickListener() {
+        recieve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(ShareActivity.this,WifiDirectActivity.class));
             }
         });
 
