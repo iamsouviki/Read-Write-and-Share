@@ -8,5 +8,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Turn off hotspot and Turn on Wifi" />
+        android:text="Turn off hotspot / Turn on Wifi" />
 </RelativeLayout>
