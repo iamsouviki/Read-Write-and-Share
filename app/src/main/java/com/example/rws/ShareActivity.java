@@ -182,7 +182,7 @@ public class ShareActivity extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ShareActivity.this,WifiDirectActivity.class));
+
                 
             }
         });
@@ -191,7 +191,7 @@ public class ShareActivity extends AppCompatActivity {
         recieve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ShareActivity.this,WifiDirectActivity.class));
+
             }
         });
 
