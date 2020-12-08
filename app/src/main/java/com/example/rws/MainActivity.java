@@ -245,8 +245,7 @@ public class MainActivity extends AppCompatActivity {
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,ShareActivity.class));
-                finish();
+                startActivity(new Intent(MainActivity.this,WifiDirectActivity.class));
             }
         });
 
