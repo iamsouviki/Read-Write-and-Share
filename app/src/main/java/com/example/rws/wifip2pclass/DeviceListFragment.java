@@ -1,4 +1,4 @@
-package com.example.rws;
+package com.example.rws.wifip2pclass;
 
 import android.app.ListFragment;
 import android.app.ProgressDialog;
@@ -16,6 +16,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.rws.R;
+import com.example.rws.activity.WifiDirectActivity;
 
 import java.util.ArrayList;
 import java.util.List;

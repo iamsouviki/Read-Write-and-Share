@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:weightSum="1"
     android:layout_margin="15dp"
-    tools:context=".CreateNewFile">
+    tools:context=".activity.CreateNewFile">
 
     <LinearLayout
         android:layout_width="match_parent"

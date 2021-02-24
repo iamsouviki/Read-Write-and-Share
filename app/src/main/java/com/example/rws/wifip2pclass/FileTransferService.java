@@ -1,4 +1,4 @@
-package com.example.rws;
+package com.example.rws.wifip2pclass;
 
 
 import android.app.IntentService;
@@ -7,6 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+
+import com.example.rws.activity.WifiDirectActivity;
+import com.example.rws.wifip2pclass.DeviceDetailFragment;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

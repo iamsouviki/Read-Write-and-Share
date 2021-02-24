@@ -1,4 +1,4 @@
-package com.example.rws;
+package com.example.rws.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+
+import com.example.rws.R;
 
 public class SplashScreen extends AppCompatActivity {
     ImageView ig;

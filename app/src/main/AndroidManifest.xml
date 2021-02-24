@@ -21,22 +21,19 @@
         android:theme="@style/AppTheme">
 
         <receiver
-            android:name=".WiFIDirectBroadcastReceiver"
+            android:name=".wifibroadcastreciver.WiFIDirectBroadcastReceiver"
             android:enabled="true"
             android:exported="true"></receiver>
 
         <service
-            android:name=".FileTransferService"
+            android:name=".wifip2pclass.FileTransferService"
             android:exported="false" />
 
+        <activity android:name=".activity.CreateNewFile" />
         <activity
-            android:name=".ShareActivity"
-            android:theme="@style/Theme.MaterialComponents.Light" />
-        <activity android:name=".CreateNewFile" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="RWS" />
-        <activity android:name=".SplashScreen">
+        <activity android:name=".activity.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,8 +41,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".WifiDirectActivity">
+        <activity android:name=".activity.WifiDirectActivity">
         </activity>
+        <activity android:name=".activity.ViewFullNews" />
+        <activity android:name=".activity.NewsHomeActivity"/>
 
 
         <meta-data

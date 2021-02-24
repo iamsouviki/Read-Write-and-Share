@@ -1,4 +1,4 @@
-package com.example.rws;
+package com.example.rws.activity;
 
 
 import android.Manifest;
@@ -21,7 +21,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,18 +28,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 
-import com.example.rws.DeviceListFragment.DeviceActionListener;
+import com.example.rws.wifip2pclass.DeviceDetailFragment;
+import com.example.rws.wifip2pclass.DeviceListFragment;
+import com.example.rws.wifip2pclass.DeviceListFragment.DeviceActionListener;
+import com.example.rws.R;
+import com.example.rws.wifibroadcastreciver.WiFIDirectBroadcastReceiver;
 
 import java.lang.reflect.Method;
 
-import static com.example.rws.R.layout.savefiledialogue;
-import static com.example.rws.R.layout.wifiondialog;
 
-
-public class WifiDirectActivity extends Activity implements ChannelListener, DeviceListFragment.DeviceActionListener {
+public class WifiDirectActivity extends Activity implements ChannelListener, DeviceActionListener {
 
     public static final String TAG = "wifidirectdemo";
 
@@ -140,7 +139,7 @@ public class WifiDirectActivity extends Activity implements ChannelListener, Dev
                 && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    com.example.rws.WifiDirectActivity.PERMISSIONS_REQUEST_CODE_ACCESS_FINE_LOCATION);
+                    WifiDirectActivity.PERMISSIONS_REQUEST_CODE_ACCESS_FINE_LOCATION);
             // After this point you wait for callback in
             // onRequestPermissionsResult(int, String[], int[]) overridden method
         }
@@ -149,7 +148,7 @@ public class WifiDirectActivity extends Activity implements ChannelListener, Dev
             @Override
             public void onClick(View v) {
                 if (!isWifiP2pEnabled) {
-                    Toast.makeText(com.example.rws.WifiDirectActivity.this, R.string.p2p_off_warning,
+                    Toast.makeText(WifiDirectActivity.this, R.string.p2p_off_warning,
                             Toast.LENGTH_SHORT).show();
                 }
                 final DeviceListFragment fragment = (DeviceListFragment) getFragmentManager()
@@ -168,13 +167,13 @@ public class WifiDirectActivity extends Activity implements ChannelListener, Dev
                 manager.discoverPeers(channel, new ActionListener() {
                     @Override
                     public void onSuccess() {
-                        Toast.makeText(com.example.rws.WifiDirectActivity.this, "Discovery Initiated",
+                        Toast.makeText(WifiDirectActivity.this, "Discovery Initiated",
                                 Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFailure(int reasonCode) {
-                        Toast.makeText(com.example.rws.WifiDirectActivity.this, "Discovery Failed : " + reasonCode,
+                        Toast.makeText(WifiDirectActivity.this, "Discovery Failed : " + reasonCode,
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -286,7 +285,7 @@ public class WifiDirectActivity extends Activity implements ChannelListener, Dev
 
             case R.id.atn_direct_discover:
                 if (!isWifiP2pEnabled) {
-                    Toast.makeText(com.example.rws.WifiDirectActivity.this, R.string.p2p_off_warning,
+                    Toast.makeText(WifiDirectActivity.this, R.string.p2p_off_warning,
                             Toast.LENGTH_SHORT).show();
                     return true;
                 }
@@ -296,13 +295,13 @@ public class WifiDirectActivity extends Activity implements ChannelListener, Dev
                 manager.discoverPeers(channel, new ActionListener() {
                     @Override
                     public void onSuccess() {
-                        Toast.makeText(com.example.rws.WifiDirectActivity.this, "Discovery Initiated",
+                        Toast.makeText(WifiDirectActivity.this, "Discovery Initiated",
                                 Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFailure(int reasonCode) {
-                        Toast.makeText(com.example.rws.WifiDirectActivity.this, "Discovery Failed : " + reasonCode,
+                        Toast.makeText(WifiDirectActivity.this, "Discovery Failed : " + reasonCode,
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -332,7 +331,7 @@ public class WifiDirectActivity extends Activity implements ChannelListener, Dev
 
             @Override
             public void onFailure(int reason) {
-                Toast.makeText(com.example.rws.WifiDirectActivity.this, "Connect failed. Retry.",
+                Toast.makeText(WifiDirectActivity.this, "Connect failed. Retry.",
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -395,13 +394,13 @@ public class WifiDirectActivity extends Activity implements ChannelListener, Dev
 
                     @Override
                     public void onSuccess() {
-                        Toast.makeText(com.example.rws.WifiDirectActivity.this, "Aborting connection",
+                        Toast.makeText(WifiDirectActivity.this, "Aborting connection",
                                 Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFailure(int reasonCode) {
-                        Toast.makeText(com.example.rws.WifiDirectActivity.this,
+                        Toast.makeText(WifiDirectActivity.this,
                                 "Connect abort request failed. Reason Code: " + reasonCode,
                                 Toast.LENGTH_SHORT).show();
                     }

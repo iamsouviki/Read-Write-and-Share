@@ -8,7 +8,7 @@
     android:background="#FFFFFF"
     android:id="@+id/drawer_layout"
     android:layout_margin="2dp"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
 
     <ScrollView
@@ -65,6 +65,19 @@
                 android:layout_height="220dp"
                 android:layout_margin="15dp"
                 android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/technews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="170dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1"
+                    android:stateListAnimator="@null"
+                    android:background="#FFFFFF"
+                    android:drawableTop="@drawable/newstv"
+                    android:text="Today's Top \nTech News"
+                    android:layout_marginRight="5dp"/>
 
 
                 <Button

@@ -1,4 +1,4 @@
-package com.example.rws;
+package com.example.rws.wifibroadcastreciver;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
@@ -10,6 +10,11 @@ import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
 import android.net.wifi.p2p.WifiP2pManager.PeerListListener;
 import android.util.Log;
+
+import com.example.rws.R;
+import com.example.rws.activity.WifiDirectActivity;
+import com.example.rws.wifip2pclass.DeviceDetailFragment;
+import com.example.rws.wifip2pclass.DeviceListFragment;
 
 /**
  * A BroadcastReceiver that notifies of important wifi p2p events.

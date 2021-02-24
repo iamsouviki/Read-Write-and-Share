@@ -1,4 +1,4 @@
-package com.example.rws;
+package com.example.rws.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.rws.R;
 import com.google.android.material.navigation.NavigationView;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
@@ -41,7 +42,7 @@ import static com.example.rws.R.layout.settingdialog;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button create,share,openfile;
+    Button create,share,openfile,technews;
     int count;
     CarouselView carouselView;
     String actualfilepath,filename;
@@ -61,6 +62,23 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Read   Write  &  Share");
         requestPermissions(permissions,3);
 
+        //drawer layout
+        createdrawerLayout();
+
+        initializeItems();
+
+        //carouseview
+        carouseviewCreate();
+
+        buttonclicklistener();
+
+        //create all dialog view
+        createAllDialogView();
+
+
+    }
+
+    private void createAllDialogView() {
         //settingdialogview
         AlertDialog.Builder settingbuilder = new AlertDialog.Builder(MainActivity.this);
         final LayoutInflater infset = this.getLayoutInflater();
@@ -73,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try{
-                   Runtime runtime = Runtime.getRuntime();
-                   runtime.exec("pm clear YOUR_APP_PACKAGE_GOES HERE");
+                    Runtime runtime = Runtime.getRuntime();
+                    runtime.exec("pm clear YOUR_APP_PACKAGE_GOES HERE");
                     Toast.makeText(getApplicationContext(), "all data cleared", Toast.LENGTH_LONG).show();
                 }
                 catch (Exception e){
@@ -119,19 +137,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String fmessage=feedbackmessage.getText().toString();
-               Uri uri = Uri.parse("smsto:"+"+917001178718");
-               Intent intent = new Intent(Intent.ACTION_SENDTO,uri);
+                Uri uri = Uri.parse("smsto:"+"+917001178718");
+                Intent intent = new Intent(Intent.ACTION_SENDTO,uri);
                 String sharesub="Text";
                 intent.putExtra(Intent.EXTRA_SUBJECT,sharesub);
-               intent.putExtra(Intent.EXTRA_TEXT,fmessage);
-               intent.setPackage("com.whatsapp");
-               feedbackmessage.setText("");
-               feedbackdialog.dismiss();
-               startActivity(intent);
+                intent.putExtra(Intent.EXTRA_TEXT,fmessage);
+                intent.setPackage("com.whatsapp");
+                feedbackmessage.setText("");
+                feedbackdialog.dismiss();
+                startActivity(intent);
             }
         });
+    }
 
-        //drawer layout
+    private void createdrawerLayout() {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -139,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         NavigationView navigationView = findViewById(R.id.navigationviewside);
-       View view = navigationView.inflateHeaderView(R.layout.sidenavigationicon);
+        View view = navigationView.inflateHeaderView(R.layout.sidenavigationicon);
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -203,14 +222,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
 
-        //initialize items
-        create = findViewById(R.id.createnewfile);
-        share = findViewById(R.id.sharefile);
-        openfile=findViewById(R.id.opennewfile);
-        carouselView = (CarouselView) findViewById(R.id.carouselView);
-
-        //carouseview
+    private void carouseviewCreate() {
         carouselView.setPageCount(sampleImages.length);
         imageListener = new ImageListener() {
             @Override
@@ -219,12 +233,23 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         carouselView.setImageListener(imageListener);
+    }
 
+    private void initializeItems() {
+        //initialize items
+        create = findViewById(R.id.createnewfile);
+        share = findViewById(R.id.sharefile);
+        openfile=findViewById(R.id.opennewfile);
+        carouselView = (CarouselView) findViewById(R.id.carouselView);
+        technews = findViewById(R.id.technews);
+    }
+
+    private void buttonclicklistener() {
         //createbutton listener
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,CreateNewFile.class));
+                startActivity(new Intent(MainActivity.this, CreateNewFile.class));
                 finish();
 
             }
@@ -245,11 +270,17 @@ public class MainActivity extends AppCompatActivity {
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,WifiDirectActivity.class));
+                startActivity(new Intent(MainActivity.this, WifiDirectActivity.class));
             }
         });
 
-
+        //technews onclick listener
+        technews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, NewsHomeActivity.class));
+            }
+        });
     }
 
     //double back press back create
