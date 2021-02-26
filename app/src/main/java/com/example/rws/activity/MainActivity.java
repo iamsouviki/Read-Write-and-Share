@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.DocumentsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -382,6 +383,7 @@ public class MainActivity extends AppCompatActivity {
         intn.putExtra("FlieContent",builder.toString());
         intn.putExtra("check",50);
         intn.putExtra("filename",filename);
+        intn.putExtra("filepath",actualfilepath);
         startActivity(intn);
 
     }

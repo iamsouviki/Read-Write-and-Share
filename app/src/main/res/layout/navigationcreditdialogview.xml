@@ -19,7 +19,6 @@
         android:layout_marginRight="10dp"/>
 
     <TextView
-        android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:background="#000000"
@@ -43,30 +42,12 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="\n                        Souvik Ghosh \n    Email id: souvikghosh687@gmail.com \n                  Phone: +91 7001178718\n"
+        android:text="\nSouvik Ghosh \nEmail id: souvikghosh687@gmail.com \nPhone: +91 7001178718\n
+        Github : https://github.com/iamsouviki \n Linkdin : https://www.linkedin.com/in/iamsouviki/ \n"
         android:background="@drawable/backgroundedittext"
         android:textSize="18dp"
         android:layout_margin="10dp"
-        android:textColor="#296ED6"
-        android:textStyle="italic"/>
-    <TextView
-        android:id="@+id/textVie5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="\n                        Soumen Pal \n    Email id: palsoumen306@gmail.com \n                  Phone: +91 9679833243\n"
-        android:background="@drawable/backgroundedittext"
-        android:textSize="18dp"
-        android:layout_margin="10dp"
-        android:textColor="#296ED6"
-        android:textStyle="italic"/>
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="\n                        Souvik Ghosh \n    Email id: souvikvk18@gmail.com \n                  Phone: +91 8637807535\n"
-        android:background="@drawable/backgroundedittext"
-        android:textSize="18dp"
-        android:layout_margin="10dp"
+        android:textAlignment="center"
         android:textColor="#296ED6"
         android:textStyle="italic"/>
 

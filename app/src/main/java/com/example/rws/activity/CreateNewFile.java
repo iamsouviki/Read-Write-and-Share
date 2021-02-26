@@ -5,16 +5,21 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.contentcapture.ContentCaptureCondition;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -23,9 +28,15 @@ import android.widget.Toast;
 
 import com.example.rws.R;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import static com.example.rws.R.layout.savefiledialogue;
@@ -33,10 +44,27 @@ import static com.example.rws.R.layout.savefiledialogue;
 public class CreateNewFile extends AppCompatActivity {
 
     EditText body,filename;
-    String content,FILE_NAME;
+    String content,FILE_NAME,openfilepath;
     Spinner fileextension;
     String filecontent;
+    String checkoporcr="create";
     File file,textFile;
+
+    String worldslist[] = {"abstract","boolean", "break","byte",
+            "case","catch","char",
+            "class",
+            "continue",
+            "default",
+            "do",
+            "double",
+            "else",
+            "enum",
+            "extends",
+            "final",
+            "finally",
+            "float",
+            "for","if","implements","import","instanceof","int","interface","long","native","new","null","package","private","protected","public",
+    "return","short","static","strictfp","super","synchronized","switch","this","throw","throws","try","void","while"};
 
     int t=2,mn,k,size=14;
 
@@ -48,7 +76,7 @@ public class CreateNewFile extends AppCompatActivity {
 
     String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
-    String Extn[] = {".txt",".c",".java",".cpp",".xml"};
+    String Extn[] = {".txt",".c",".java",".cpp",".xml",".py"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,13 +102,15 @@ public class CreateNewFile extends AppCompatActivity {
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fileextension.setAdapter(aa);
 
-        // For open file
+        // For open file part
         Intent intn = getIntent();
         final int check = intn.getIntExtra("check",0);
         filecontent = intn.getStringExtra("FlieContent");
         String Filename = intn.getStringExtra("filename");
+        openfilepath = intn.getStringExtra("filepath");
         if(check==50){
             getSupportActionBar().setTitle(Filename);
+            checkoporcr="open";
             body.setText(filecontent);
             filename.setText(Filename);
         }
@@ -133,6 +163,7 @@ public class CreateNewFile extends AppCompatActivity {
                 });
                 FILE_NAME = filename.getText().toString()+Extn[k];
                 write();
+                alertDialog1.dismiss();
             }
         });
         dialogView.findViewById(R.id.backindialogue).setOnClickListener(new View.OnClickListener() {
@@ -142,11 +173,40 @@ public class CreateNewFile extends AppCompatActivity {
             }
         });
 
+        addspan();
+
+    }
+
+    private void addspan() {
+        body.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
 
     //write a file to storage
     private void write() {
+        if(checkoporcr.equals("create")) {
+            file = new File(Environment.getExternalStorageDirectory() + "/RWS");
+            if (!file.exists()) {
+                file.mkdir();
+            }
+        }else{
+          file = new File(openfilepath);
+        }
         try {
             textFile = new File(file,FILE_NAME);
             if(textFile.exists()) {
@@ -186,7 +246,7 @@ public class CreateNewFile extends AppCompatActivity {
                 finish();
             }
         } catch (IOException e) {
-            Toast.makeText(getApplicationContext(), "Contacts us if you found problem", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Contacts us if you found problem "+e.toString(), Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -316,4 +376,5 @@ public class CreateNewFile extends AppCompatActivity {
             }
         }
     }
+
 }

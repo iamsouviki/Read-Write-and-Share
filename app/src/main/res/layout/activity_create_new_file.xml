@@ -9,25 +9,48 @@
     android:layout_margin="15dp"
     tools:context=".activity.CreateNewFile">
 
-    <LinearLayout
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
+        android:id="@+id/sliding_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.9"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/backgroundedittext"
-        android:orientation="vertical">
+        android:gravity="bottom">
 
-        <EditText
-            android:id="@+id/filecontent"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@null"
-            android:textSize="14dp"
-            android:gravity="top"/>
+            android:background="@drawable/backgroundedittext"
+            android:orientation="vertical"
+            android:layout_marginBottom="15dp">
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/filecontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@null"
+                android:textSize="14dp"
+                android:gravity="top"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|top"
+                android:text="Compile and Run"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:textColor="#FF0000"
+                android:layout_marginTop="15dp"/>
+
+        </LinearLayout>
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 
 </LinearLayout>

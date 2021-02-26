@@ -36,6 +36,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="7dp"
             android:ems="10"
+            android:backgroundTint="#FFFFFF"
             android:textAlignment="textStart"
             />
     </LinearLayout>

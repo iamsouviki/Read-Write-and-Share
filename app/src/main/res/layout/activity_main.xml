@@ -83,14 +83,14 @@
                 <Button
                     android:id="@+id/sharefile"
                     android:layout_width="wrap_content"
-                    android:layout_height="170dp"
+                    android:layout_height="210dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="15dp"
                     android:layout_weight="1"
                     android:stateListAnimator="@null"
                     android:background="#FFFFFF"
                     android:drawableTop="@drawable/ic_baseline_share_24"
-                    android:text="Share A File" />
+                    android:text="Share A File\n(only using WIFI P2P)" />
 
 
             </LinearLayout>
