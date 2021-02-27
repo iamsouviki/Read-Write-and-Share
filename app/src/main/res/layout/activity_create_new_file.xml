@@ -9,48 +9,85 @@
     android:layout_margin="15dp"
     tools:context=".activity.CreateNewFile">
 
-    <com.sothree.slidinguppanel.SlidingUpPanelLayout
-        android:id="@+id/sliding_layout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom">
+        android:background="@drawable/backgroundedittext"
+        android:orientation="vertical"
+        android:layout_weight="0.9">
+
+        <EditText
+            android:id="@+id/filecontent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@null"
+            android:textSize="14dp"
+            android:gravity="top"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0.1"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Compile and Run your code"
+            android:textAlignment="center"
+            android:layout_marginTop="7dp"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:textColor="#FF0000"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#FF0000"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"/>
+
+        <Button
+            android:id="@+id/buttontakeinput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="If there is any input please submit here"
+            android:textAllCaps="false"
+            android:backgroundTintMode="screen"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
+            android:textColor="#00FF00"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/backgroundedittext"
-            android:orientation="vertical"
-            android:layout_marginBottom="15dp">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp"
+            android:weightSum="2">
 
-            <EditText
-                android:id="@+id/filecontent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@null"
-                android:textSize="14dp"
-                android:gravity="top"/>
+            <Spinner
+                android:id="@+id/spinnerlanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="7dp"
+                android:textAlignment="center"/>
 
+            <Button
+                android:id="@+id/buttonexecute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Execute"
+                android:textAllCaps="false"
+                android:background="#2196F3"/>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center|top"
-                android:text="Compile and Run"
-                android:textSize="25dp"
-                android:textStyle="bold"
-                android:textColor="#FF0000"
-                android:layout_marginTop="15dp"/>
-
-        </LinearLayout>
-    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+    </LinearLayout>
 
 </LinearLayout>

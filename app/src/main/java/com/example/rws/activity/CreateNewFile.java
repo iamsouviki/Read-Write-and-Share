@@ -22,11 +22,15 @@ import android.view.View;
 import android.view.contentcapture.ContentCaptureCondition;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rws.R;
+import com.example.rws.apiclient.CompilerApi;
+import com.example.rws.modelclass.CompilerModels;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -39,16 +43,27 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 import static com.example.rws.R.layout.savefiledialogue;
 
 public class CreateNewFile extends AppCompatActivity {
 
-    EditText body,filename;
-    String content,FILE_NAME,openfilepath;
-    Spinner fileextension;
+    EditText body,filename,inputs;
+    String content,FILE_NAME,openfilepath,inputtext;
+    Spinner fileextension,languagespinner;
+    Button executecode,takeinput;
     String filecontent;
     String checkoporcr="create";
+    int ps;
+    String lang1;
     File file,textFile;
+    final public static String ClientID = "bbb2483c0ec0540abdcb0b5d455d104a";
+    final public static String ClientSecret = "91cc2a1c1b98f9ab8407eda668e08dbc619a9a7c57e017375a65bae9af306d88";
 
     String worldslist[] = {"abstract","boolean", "break","byte",
             "case","catch","char",
@@ -69,7 +84,7 @@ public class CreateNewFile extends AppCompatActivity {
     int t=2,mn,k,size=14;
 
 
-    AlertDialog alertDialog,alertDialog1,alert;
+    AlertDialog alertDialog,alertDialog1,alert,alertDialogoutput,alertDialogtakeinput;
     boolean ch;
 
     ArrayList <String> textcontent = new ArrayList<String>() ;
@@ -77,6 +92,9 @@ public class CreateNewFile extends AppCompatActivity {
     String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     String Extn[] = {".txt",".c",".java",".cpp",".xml",".py"};
+    String languagelist[] = {"-:Select Language:-","java","c","cpp","python2","python3"};
+
+    View dialogView,dialogviewoutput,dialogviewtakeinput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,24 +103,24 @@ public class CreateNewFile extends AppCompatActivity {
         getSupportActionBar().setTitle("Untitled");
         requestPermissions(permissions,3);
 
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        LayoutInflater inf = this.getLayoutInflater();
 
-        final View dialogView = inf.inflate(savefiledialogue,null);
+        //create alertdialog
+        createAlertdialog();
 
-        builder1.setView(dialogView);
-        builder1.setCancelable(true);
-        alertDialog1 = builder1.create();
+        //initailize
+        initial();
 
-        body = findViewById(R.id.filecontent);
-        filename = dialogView.findViewById(R.id.filename);
-        fileextension = dialogView.findViewById(R.id.fileextension);
 
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,Extn);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        fileextension.setAdapter(aa);
+        // For open file
+        comefromopenfile();
 
-        // For open file part
+
+
+        addspan();
+
+    }
+
+    private void comefromopenfile() {
         Intent intn = getIntent();
         final int check = intn.getIntExtra("check",0);
         filecontent = intn.getStringExtra("FlieContent");
@@ -112,9 +130,60 @@ public class CreateNewFile extends AppCompatActivity {
             getSupportActionBar().setTitle(Filename);
             checkoporcr="open";
             body.setText(filecontent);
+            int n=0;
+            for(int i=0;i<Filename.length();i++){
+                if(Filename.charAt(i)=='.'){
+                    n=i;
+                    break;
+                }
+            }
+            Filename=Filename.substring(0,n);
             filename.setText(Filename);
         }
+    }
 
+    private void initial() {
+        body = findViewById(R.id.filecontent);
+        executecode = findViewById(R.id.buttonexecute);
+
+
+        languagespinner = findViewById(R.id.spinnerlanguage);
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,languagelist);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        languagespinner.setAdapter(arrayAdapter);
+
+        languagespinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ps=parent.getSelectedItemPosition();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        executecode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String input = inputs.getText().toString();
+                String scrp = body.getText().toString();
+                if(ps==0){
+                    Toast.makeText(getApplicationContext(), "Please Select a Language", Toast.LENGTH_SHORT).show();
+                    return;
+                }else{
+                    lang1 = languagelist[ps];
+                }
+                alertDialogoutput.show();
+                compileration(scrp,lang1,input);
+            }
+        });
+
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,Extn);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        fileextension.setAdapter(aa);
 
         //undo-redo
         new Handler().postDelayed(new Runnable() {
@@ -125,7 +194,32 @@ public class CreateNewFile extends AppCompatActivity {
             }
         },500);
 
+    }
 
+    private void createAlertdialog() {
+        //save dialog
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        LayoutInflater inf = this.getLayoutInflater();
+        dialogView = inf.inflate(savefiledialogue,null);
+        builder1.setView(dialogView);
+        builder1.setCancelable(true);
+        alertDialog1 = builder1.create();
+
+        //output dialog
+        AlertDialog.Builder builderout = new AlertDialog.Builder(this);
+        LayoutInflater infout = this.getLayoutInflater();
+        dialogviewoutput = infout.inflate(R.layout.show_output_of_program,null);
+        builderout.setView(dialogviewoutput);
+        builderout.setCancelable(true);
+        alertDialogoutput = builderout.create();
+        dialogviewoutput.findViewById(R.id.buttonoutputclose).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialogoutput.dismiss();
+            }
+        });
+
+        //save/back button
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle("Save File").setMessage("Do you really want to Exit without Saving ?(Y/N)").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -141,31 +235,34 @@ public class CreateNewFile extends AppCompatActivity {
             }
         }).setCancelable(false);
 
-
-
         alertDialog = builder.create();
+
+        filename = dialogView.findViewById(R.id.filename);
+        fileextension = dialogView.findViewById(R.id.fileextension);
+
+        fileextension.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                k=i;
+                k=adapterView.getSelectedItemPosition();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         dialogView.findViewById(R.id.savefile).setOnClickListener(
                 new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                content = body.getText().toString();
-                fileextension.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        k=i;
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> adapterView) {
-
+                    public void onClick(View view) {
+                        content = body.getText().toString();
+                        FILE_NAME = filename.getText().toString()+Extn[k];
+                        write();
+                        alertDialog1.dismiss();
                     }
                 });
-                FILE_NAME = filename.getText().toString()+Extn[k];
-                write();
-                alertDialog1.dismiss();
-            }
-        });
         dialogView.findViewById(R.id.backindialogue).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -173,7 +270,30 @@ public class CreateNewFile extends AppCompatActivity {
             }
         });
 
-        addspan();
+        //takeinput dialog
+        AlertDialog.Builder buildertakeinput = new AlertDialog.Builder(this);
+        LayoutInflater inftakeinput = this.getLayoutInflater();
+        dialogviewtakeinput = inftakeinput.inflate(R.layout.take_input,null);
+        buildertakeinput.setView(dialogviewtakeinput);
+        buildertakeinput.setCancelable(true);
+        alertDialogtakeinput = buildertakeinput.create();
+        inputs = dialogviewtakeinput.findViewById(R.id.inputedittext);
+        dialogviewtakeinput.findViewById(R.id.buttoninputclose).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inputtext=inputs.getText().toString();
+                alertDialogtakeinput.dismiss();
+            }
+        });
+
+        takeinput=findViewById(R.id.buttontakeinput);
+        takeinput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialogtakeinput.show();
+            }
+        });
+
 
     }
 
@@ -375,6 +495,37 @@ public class CreateNewFile extends AppCompatActivity {
                 textcontent.add(b);
             }
         }
+    }
+
+    private void compileration(String sc,String lan,String inpt) {
+        String url = "https://api.jdoodle.com/v1/";
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(url).addConverterFactory(GsonConverterFactory.create()).build();
+        CompilerApi compilerApi = retrofit.create(CompilerApi.class);
+        //String sc = "print('hi')";
+        CompilerModels compilerModels = new CompilerModels(ClientID,ClientSecret,sc,inpt,lan,"0");
+
+        Call<CompilerModels> compilerModelsCall = compilerApi.createPost(compilerModels);
+        compilerModelsCall.enqueue(new Callback<CompilerModels>() {
+            @Override
+            public void onResponse(Call<CompilerModels> call, Response<CompilerModels> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(getApplicationContext(), "Failed Response", Toast.LENGTH_SHORT).show();
+                }
+                CompilerModels compilerModels1 = response.body();
+
+                TextView output =dialogviewoutput.findViewById(R.id.textViewshowoutput);
+                output.setText(compilerModels1.getOutput());
+                TextView memory =dialogviewoutput.findViewById(R.id.textViewshowmemory);
+                memory.setText(compilerModels1.getMemory());
+                TextView time =dialogviewoutput.findViewById(R.id.textViewshowtime);
+                time.setText(compilerModels1.getCpuTime());
+            }
+
+            @Override
+            public void onFailure(Call<CompilerModels> call, Throwable t) {
+                Log.e("compile","compile failed");
+            }
+        });
     }
 
 }
