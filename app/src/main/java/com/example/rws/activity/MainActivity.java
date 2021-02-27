@@ -39,7 +39,6 @@ import static com.example.rws.R.layout.about;
 import static com.example.rws.R.layout.feedback;
 import static com.example.rws.R.layout.navigationcreditdialogview;
 import static com.example.rws.R.layout.privacypolicies;
-import static com.example.rws.R.layout.settingdialog;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -80,28 +79,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createAllDialogView() {
-        //settingdialogview
-        AlertDialog.Builder settingbuilder = new AlertDialog.Builder(MainActivity.this);
-        final LayoutInflater infset = this.getLayoutInflater();
-        final View settingdialogView = infset.inflate(settingdialog,null);
-        settingbuilder.setView(settingdialogView);
-        settingbuilder.setCancelable(true);
-        settingsdialoge = settingbuilder.create();
-        cleardata=settingdialogView.findViewById(R.id.clearalldata);
-        cleardata.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try{
-                    Runtime runtime = Runtime.getRuntime();
-                    runtime.exec("pm clear YOUR_APP_PACKAGE_GOES HERE");
-                    Toast.makeText(getApplicationContext(), "all data cleared", Toast.LENGTH_LONG).show();
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "failed to clear data", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
         //creditdialogview
         AlertDialog.Builder creditbuilder = new AlertDialog.Builder(MainActivity.this);
@@ -208,16 +185,6 @@ public class MainActivity extends AppCompatActivity {
                         });
                         feedbackdialog.show();
                         feedbackdialog.setCancelable(false);
-                        break;
-                    case R.id.settings:
-                        settingsdialoge.setButton(AlertDialog.BUTTON_NEUTRAL, "Close", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                settingsdialoge.dismiss();
-                            }
-                        });
-                        settingsdialoge.show();
-                        settingsdialoge.setCancelable(false);
                         break;
                 }
 

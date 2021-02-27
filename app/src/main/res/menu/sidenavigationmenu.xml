@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <item
-        android:id="@+id/settings"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:title="Settings"
-        app:showAsAction="withText" />
     <item
         android:id="@+id/feedback"
         android:icon="@drawable/ic_baseline_group_24"
         android:title="Feedback"
-        app:showAsAction="withText" />
-    <item
-        android:id="@+id/aboutapp"
-        android:icon="@drawable/ic_baseline_info_24"
-        android:title="About"
         app:showAsAction="withText" />
     <item
         android:id="@+id/credit"
@@ -26,6 +15,11 @@
         android:id="@+id/privacypolicies"
         android:icon="@drawable/ic_baseline_assignment_24"
         android:title="Privacy Policy"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/aboutapp"
+        android:icon="@drawable/ic_baseline_info_24"
+        android:title="About"
         app:showAsAction="withText" />
 
 </menu>
