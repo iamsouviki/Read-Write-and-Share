@@ -23,10 +23,10 @@
             <com.synnapps.carouselview.CarouselView
                 android:id="@+id/carouselView"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="350dp"
                 app:fillColor="#FFFFFFFF"
                 app:pageColor="#00000000"
-                app:radius="6dp"
+                app:radius="3dp"
                 app:slideInterval="3000"
                 app:strokeColor="#FF777777"
                 app:strokeWidth="1dp"
