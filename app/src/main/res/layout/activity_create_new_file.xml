@@ -57,7 +57,7 @@
             android:id="@+id/buttontakeinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="If there is any input please submit here"
+            android:text="Click Here to Submit Inputs (If needed)"
             android:textAllCaps="false"
             android:backgroundTintMode="screen"
             android:layout_marginRight="12dp"

@@ -19,23 +19,33 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/inputedittext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:hint="Enter Inputs(optionals)"
-                android:textAlignment="center" />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/buttoninputclose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ok"
-                android:layout_gravity="center"
-                android:backgroundTintMode="screen"
-                android:textColor="#00BCD4"
-                android:layout_margin="7dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <EditText
+                        android:id="@+id/inputedittext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:hint="Enter Inputs(optionals)"
+                        android:textAlignment="center" />
+                    <Button
+                        android:id="@+id/buttoninputclose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ok"
+                        android:layout_gravity="center"
+                        android:backgroundTintMode="screen"
+                        android:textColor="#00BCD4"
+                        android:layout_margin="7dp"/>
+                </LinearLayout>
+            </ScrollView>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

@@ -84,7 +84,7 @@ public class CreateNewFile extends AppCompatActivity {
     int t=2,mn,k,size=14;
 
 
-    AlertDialog alertDialog,alertDialog1,alert,alertDialogoutput,alertDialogtakeinput;
+    AlertDialog alertDialog,alertDialog1,alert,alertDialogoutput,alertDialogtakeinput,alertDialogcompiler;
     boolean ch;
 
     ArrayList <String> textcontent = new ArrayList<String>() ;

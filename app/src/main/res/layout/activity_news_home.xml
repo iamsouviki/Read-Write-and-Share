@@ -24,7 +24,7 @@
         android:id="@+id/textView99"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Today's Hot news :"
+        android:text="Today's Top Tech news :"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
