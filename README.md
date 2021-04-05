@@ -6,7 +6,7 @@
 - Android
 - Java
 - XML
-- Libraries used :- Retrofit,GSON,PICASSO,MultiWaveHeader.
+- Libraries used :- Retrofit,GSON.
 
 **Application Screenshots**
 
