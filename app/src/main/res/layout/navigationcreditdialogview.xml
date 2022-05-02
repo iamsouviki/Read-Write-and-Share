@@ -42,8 +42,8 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="\nSouvik Ghosh \nEmail id: souvikghosh687@gmail.com \nPhone: +91 7001178718\n
-        Github : https://github.com/iamsouviki \n Linkdin : https://www.linkedin.com/in/iamsouviki/ \n"
+        android:text="\nSoumen Pal \nEmail id: palsoumen306@gmail.com \nPhone: +91 9679833243\n
+        Github : https://github.com/soumen744488 \n Linkdin : https://www.linkedin.com/in/soumen-pal-19b416233/ \n"
         android:background="@drawable/backgroundedittext"
         android:textSize="18dp"
         android:layout_margin="10dp"

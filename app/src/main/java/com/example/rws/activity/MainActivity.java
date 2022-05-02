@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String fmessage=feedbackmessage.getText().toString();
-                Uri uri = Uri.parse("smsto:"+"+917001178718");
+                Uri uri = Uri.parse("smsto:"+"+919679833243");
                 Intent intent = new Intent(Intent.ACTION_SENDTO,uri);
                 String sharesub="Text";
                 intent.putExtra(Intent.EXTRA_SUBJECT,sharesub);

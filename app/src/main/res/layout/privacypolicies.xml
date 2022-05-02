@@ -143,7 +143,7 @@ This policy is effective as of 2020-12-10"
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="       If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at souvikghosh687@gmail.com.\n"
+                android:text="       If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at palsoumen306@gmail.com.\n"
                 android:textSize="16dp"
                 android:textAlignment="textStart"
                 android:layout_margin="7dp"/>
